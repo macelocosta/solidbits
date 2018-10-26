@@ -1,0 +1,138 @@
+@import "_variables";
+
+.top-menu {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  width: 1200px;
+  height: $top-menu-height;
+  z-index: 3;
+  background: $color-white;
+  padding: $spacing-md;
+  box-sizing: border-box;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+    flex: 0 0 $sidebar-width;  // can't grow, can't shrink, fixed width
+    // margin-left: 1px;
+    margin: -$spacing-md;
+    padding: inherit;
+    box-sizing: inherit;
+    width: $sidebar-width;
+
+    img {
+      height: 100%;
+      // margin-left: $spacing-md;
+    }
+
+    &.add-side-borders {
+      border-right: 1px solid $color-gray-medium;
+      border-left: 1px solid $color-gray-medium;
+    }
+
+    &.add-border-bottom {
+      border-bottom: 1px solid $color-primary;
+    }
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex: 1;
+    box-sizing: inherit;
+    margin-left: $spacing-md;
+  }
+
+  i {
+    // margin: $spacing-sm $spacing-sm $spacing-sm $spacing-md;
+    // margin: $spacing-sm;
+    font-size: $icon-font-default-size;
+    border-radius: 50%;
+    // padding: $spacing-xm;
+    user-select: none;
+    transition: all 150ms;
+
+    &.icon-magnifier {
+      padding: 0 $spacing-md;
+    }
+
+    &:hover:not(.icon-magnifier):not(.icon-user) {
+      // background: $color-primary;
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
+}
+
+#search {
+  border: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  &::placeholder {
+    font-size: $placeholder-font-size;
+  }
+}
+
+.icon-alarm {
+  margin-right: $spacing-xl;
+}
+
+#user {
+  display: flex;
+  // margin: $spacing-sm 0 $spacing-sm $profile-space;
+  margin-left: $spacing-xl;
+
+  .profile-image {
+    display: flex;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid $color-gray-darker;
+    margin: -$spacing-xm;
+
+    // i {
+    //   margin: 0;
+    //   font-size: 18px;
+    //   color: $color-gray-darker;
+    // }
+
+    // img {
+    //   width: 30px;
+    //   height: 30px;
+    // }
+  }
+}
+
+#user-menu-container {
+  display: flex;
+  align-items: center;
+  // margin-left: $spacing-md;
+  cursor: pointer;
+
+  span {
+    margin: 0 $spacing-md;
+    line-height: 1rem;
+  }
+
+  &:hover {
+    color: $color-primary;
+    border-radius: $border-radius-default;
+    // color: $white;
+  }
+ 
+  * {
+    user-select: none;
+    font-size: $text-default-font-size;
+  }
+
+  i {
+    padding: 0;
+    margin-right: 0;
+  }
+}

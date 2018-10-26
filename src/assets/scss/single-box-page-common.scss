@@ -1,0 +1,39 @@
+@import "_variables";
+
+:host {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-container {
+  border: 1px solid $color-gray-medium;
+  border-radius: $border-radius-default;
+  padding: $spacing-lg;
+  background: $color-white;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: $single-box-content-width;
+    font-size: $text-default-font-size;
+  
+    > label, > h2, > span, > p {
+      align-self: baseline;
+    }
+
+    + span {
+      text-align: left;
+      font-size: 12px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  
+    button {
+      margin-top: $spacing-md;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<nav class="top-menu">
+  <div class="logo-container" [class.add-side-borders]="isAuthenticated" (click)="onBrandClick()" [routerLinkActive]="['add-border-bottom']" [routerLinkActiveOptions]="{exact: true}">
+    <img src="assets/brand.svg"/>
+  </div>
+  <div class="content-wrapper" *ngIf="isAuthenticated">
+    <i class="icon-magnifier"></i>
+    <input type="search" id="search" name="search" placeholder="Buscar locais ou lixeiras" />
+    <i class="icon-alarm"></i>
+    <!-- <i class="icon-cog2"></i> -->
+    <div id="user">
+      <!-- <div class="profile-image">
+        <i class="icon-user"></i>
+      </div> -->
+      <div id="user-menu-container">
+        <span>{{ user.name }}</span>
+        <i class="icon-chevron-down"></i>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="showLoginBtn" class="is-nav is-info" [routerLink]="['login']">
+    <span>Entrar</span>
+  </button>
+</nav>

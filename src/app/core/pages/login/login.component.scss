@@ -1,0 +1,28 @@
+@import "single-box-page-common";
+
+form {
+  margin-bottom: $spacing-xl;
+}
+
+.forgot-password-container {
+  position: relative;
+  padding-top: $spacing-lg;
+
+  hr {
+    position: absolute;
+    top: 0;
+    left: -$spacing-lg;
+    right: -$spacing-lg;
+    border: none;
+    margin: 0;
+    background-color: $color-gray-medium;
+    height: 1px;
+  }
+
+  a {
+    font-size: 12px;
+    color: $color-gray-darker;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

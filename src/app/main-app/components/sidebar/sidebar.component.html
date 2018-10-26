@@ -1,0 +1,27 @@
+<aside>
+  <nav>
+    <ul>
+      <li [routerLink]="['overview']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><span>Visão geral</span></li>
+      <li [routerLink]="['coleta']" [routerLinkActive]="['active']"><span>Coleta</span></li>
+      <li [routerLink]="['lixeiras']" [routerLinkActive]="['active']"><span>Lixeiras</span></li>
+      <li [routerLink]="['analises']" [routerLinkActive]="['active']"><span>Análises</span></li>
+      <li [routerLink]="['relatorios']" [routerLinkActive]="['active']"><span>Relatórios</span></li>
+      <li [routerLink]="['configuracoes']" [routerLinkActive]="['active']"><span>Configurações</span></li>
+    </ul>
+  </nav>
+  <!-- <div id="system-status">
+    <div class="bin-usage" title="{{binUsage}}%">
+      <p>Uso das lixeiras</p>
+      <div class="progress-bar-container"></div>
+    </div>
+    <div class="service-integrity">
+      <p>Integridade do serviço</p>
+      <i class="icon-checkmark-circle ok" *ngIf="serviceIntegrityStatus.code == 0"></i>
+      <i class="icon-notification-circle warning" *ngIf="serviceIntegrityStatus.code == 1"></i>
+      <i class="icon-notification-circle error" *ngIf="serviceIntegrityStatus.code == 2"></i>
+      <span *ngIf="serviceIntegrityStatus.code == 0">{{ serviceIntegrityStatus.message }}</span>
+      <span *ngIf="serviceIntegrityStatus.code == 1">{{ serviceIntegrityStatus.value }} sensor<span *ngIf="serviceIntegrityStatus.value > 1">es</span> com falha</span>
+      <span *ngIf="serviceIntegrityStatus.code == 2">{{ serviceIntegrityStatus.value }} lixeira<span *ngIf="serviceIntegrityStatus.value > 1">s</span> off-line</span>
+    </div>
+  </div> -->
+</aside>

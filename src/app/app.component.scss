@@ -1,0 +1,33 @@
+@import "_variables";
+
+.top-menu-strip {
+  height: $top-menu-height;
+  background: $color-white;
+  box-shadow: 0px 0px 20px 0px $color-gray-lighter;
+  border-bottom: 1px solid $color-gray-medium;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin: 0px auto;
+  width: 1200px;
+  height: calc(100% - #{$top-menu-height});
+  padding-top: $top-menu-height;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .router-wrapper {
+    display: flex;
+    flex: 1;
+
+    &:nth-child(1) {
+      display: flex;
+      flex: 1;
+    }
+  }
+}

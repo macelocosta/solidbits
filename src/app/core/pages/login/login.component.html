@@ -1,0 +1,23 @@
+<div class="box-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <h2>Entrar</h2>
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" formControlName="email" placeholder="" required [class.is-warning]="f.email.dirty && f.email.invalid || formSubmitted && f.email.invalid" (blur)="onInputBlur()">
+    <p class="is-help is-warning" *ngIf="f.email.dirty && f.email.errors?.required || formSubmitted && f.email.errors?.required">Insira seu endereço de e-mail.</p>
+    <p class="is-help is-warning" *ngIf="f.email.dirty && f.email.errors?.email || formSubmitted && f.email.errors?.email">Insira um endereço de e-mail válido.</p>
+    <label for="password">Senha</label>
+    <input type="password" id="password" formControlName="password" required [class.is-warning]="f.password.dirty && f.password.invalid || formSubmitted && f.password.invalid" (blur)="onInputBlur()">
+    <p class="is-help is-warning" *ngIf="f.password.dirty && f.password.errors?.required || formSubmitted && f.password.errors?.required">Insira sua senha.</p>
+    <p class="is-help is-warning" *ngIf="f.password.dirty && f.password.errors?.minlength || formSubmitted && f.password.errors?.minlength">A senha deve ter ao menos 8 caracteres.</p>
+    <p class="is-help is-warning" *ngIf="formSubmitted && f.password.errors?.invalid">Os dados inseridos não estão corretos. Verifique-os e tente novamente.</p>
+    <!-- <button type="submit" class="is-info is-md" [class.is-loading]="isLoading">Entrar</button> -->
+    <button type="submit" class="is-info is-md" [class.is-loading]="isLoading">
+      <span>Entrar</span>
+      <span class="is-loading-text">Entrando...</span>
+    </button>
+  </form>
+  <div class="forgot-password-container">
+    <hr>
+    <a [routerLink]="['/forgot-password']">Esqueceu a senha?</a>
+  </div>
+</div>

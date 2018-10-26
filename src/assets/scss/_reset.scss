@@ -1,0 +1,33 @@
+@import "_variables";
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $color-gray-lighter;
+}
+
+input, div, button, ul, li {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
