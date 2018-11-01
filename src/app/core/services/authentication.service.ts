@@ -96,14 +96,14 @@ export class AuthenticationService {
   }
 
   public recoverPassword(email: string, captchaPayload: string) {
-    return this.http.post<any>('api/auth/recuperar-senha', { email: email, captchaPayload: captchaPayload }).map(res => {
+    return this.http.post<any>('api/auth/recover-password', { email: email, captchaPayload: captchaPayload }).map(res => {
       return res;
     });
   }
 
-  public isRecoverPasswordTokenValid(token: any): Observable<boolean> {
-    // const token = window.location.href.split('=')[1];
-    return this.http.get(`/api/auth/resetar-senha?token=${token}`, { observe: 'response' }).map(res => {
+  public isResetPasswordTokenValid(): any {
+    const token = window.location.href.split('=')[1];
+    return this.http.get(`/api/auth/reset-password?token=${token}`, { observe: 'response' }).map(res => {
       if (res.status === 200) {
         return true;
       } else {
@@ -118,8 +118,8 @@ export class AuthenticationService {
 
   public resetPassword(passwordsData: any): Observable<any> {
     const token = window.location.href.split('=')[1];
-    return this.http.post<any>(`api/auth/resetar-senha?token=${token}`,
-                              { password: passwordsData.password, verifyPassword: passwordsData.verifyPassword }).map(res => {
+    return this.http.post<any>(`api/auth/reset-password?token=${token}`,
+                              { password: passwordsData.password, password_r: passwordsData.password_r }).map(res => {
       return res;
     });
   }

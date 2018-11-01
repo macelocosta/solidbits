@@ -1,0 +1,21 @@
+@import "_variables";
+
+:host {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+h1 {
+  font-size: 8em;
+  margin: 0 0 4rem;
+}
+
+.error-description {
+
+  text-align: left;
+
+  > .error-code {
+    color: $color-gray-darker;
+  }
+}

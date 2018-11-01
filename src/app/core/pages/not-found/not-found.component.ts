@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authSvc: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onBrandClick() {
+    if (this.authSvc.isLocalTokenValid()) {
+      this.router.navigate(['/app']);
+    } else {
+      this.router.navigate(['']);
+    }
   }
 
 }

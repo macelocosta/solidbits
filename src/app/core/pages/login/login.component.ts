@@ -16,10 +16,10 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   private loginForm:FormGroup;
-  private returnUrl: string;
-  private formSubmitted = false;
-  private isLoading = false;
-  private lastSentData: any;
+  private returnUrl:string;
+  private formSubmitted:boolean;
+  private lastSentData:any;
+  private isLoading:boolean;
 
   ngOnInit() {
     this.loginForm = new FormGroup({

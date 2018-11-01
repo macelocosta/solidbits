@@ -12,11 +12,11 @@
   border-radius: $border-radius-default;
   padding: $spacing-lg;
   background: $color-white;
+  width: $single-box-content-width;
 
   form {
     display: flex;
     flex-direction: column;
-    width: $single-box-content-width;
     font-size: $text-default-font-size;
   
     > label, > h2, > span, > p {
@@ -34,6 +34,22 @@
   
     button {
       margin-top: $spacing-md;
+    }
+  }
+
+  > span {
+    text-align: left;
+
+    h2 {
+      margin-top: 0;
+    }
+    
+    p {
+      margin-bottom: $spacing-xl;
+    }
+
+    button {
+      width: 100%;
     }
   }
 }
