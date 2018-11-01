@@ -19,12 +19,22 @@ button:hover {
   cursor: pointer;
 }
 
-h2 {
-  font-weight: 600;
-}
+// h2 {
+//   font-weight: 600;
+// }
 
 a {
   text-decoration: none;
+  color: $color-primary;
+
+  &:hover {
+    color: $color-primary-lighter;
+    cursor: pointer;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, span, p {
+  cursor: default;
 }
 
 ul {

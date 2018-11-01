@@ -2,7 +2,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
     <h2>Entrar</h2>
     <label for="email">E-mail</label>
-    <input type="email" id="email" name="email" formControlName="email" placeholder="" required [class.is-warning]="f.email.dirty && f.email.invalid || formSubmitted && f.email.invalid" (blur)="onInputBlur()">
+    <input autofocus type="email" id="email" name="email" formControlName="email" placeholder="" required [class.is-warning]="f.email.dirty && f.email.invalid || formSubmitted && f.email.invalid" (blur)="onInputBlur()">
     <p class="is-help is-warning" *ngIf="f.email.dirty && f.email.errors?.required || formSubmitted && f.email.errors?.required">Insira seu endereço de e-mail.</p>
     <p class="is-help is-warning" *ngIf="f.email.dirty && f.email.errors?.email || formSubmitted && f.email.errors?.email">Insira um endereço de e-mail válido.</p>
     <label for="password">Senha</label>

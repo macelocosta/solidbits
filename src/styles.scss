@@ -20,6 +20,10 @@ button {
   align-content: center;
   justify-content: center;
 
+  * {
+    cursor: pointer;
+  }
+
   > span {
     align-self: center;
 
@@ -105,7 +109,7 @@ button {
 }
 
 label {
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-xm;
 }
 
 input {
@@ -135,4 +139,42 @@ a {
     -webkit-transform: rotate(359deg);
             transform: rotate(359deg);
   }
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 2rem;
+}
+
+// .input-icon-wrapper {
+//   width: calc(100% - #{$spacing-sm});
+
+//   > input {
+//     width: calc(100% - #{$spacing-sm});
+//   }
+// }
+
+h2 {
+  font-size: 1.5em;
+  line-height: 1.5rem;
+}
+
+h3 {
+  font-size: 1.17em;
+  line-height: 1.17rem;
+}
+
+h4 {
+  font-size: 1.12em;
+  line-height: 1.12rem;
+}
+
+h5 {
+  font-size: .83em;
+  line-height: .83rem;
+}
+
+h6 {
+  font-size: .75em;
+  line-height: .73rem;
 }

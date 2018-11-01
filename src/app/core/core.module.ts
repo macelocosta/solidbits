@@ -17,7 +17,7 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     RecaptchaModule.forRoot(),
     CoreRoutingModule
   ],
-  declarations: [TopMenuComponent, LandingComponent, NotFoundComponent, LoginComponent, RecoverPasswordComponent, ForgotPasswordComponent],
+  declarations: [TopMenuComponent, LandingComponent, NotFoundComponent, LoginComponent, ResetPasswordComponent, ForgotPasswordComponent],
   exports: [RouterModule, TopMenuComponent],
   providers: [AuthenticationService, AuthGuardService,
     { provide: HTTP_INTERCEPTORS,
@@ -38,7 +38,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     },
     { provide: RECAPTCHA_SETTINGS,
       useValue: {
-        siteKey: '6Lfto0EUAAAAAITnxpdZhQ-ugxNHQTr632OjZpyw'
+        siteKey: '6LdEx3cUAAAAAHXtCfBfUWUGy1ttPAYr7Et-q6kS'
       } as RecaptchaSettings
     }
   ]
