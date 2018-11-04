@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CardBasicInfo } from '../../models/card-basic-info';
-import { CardStackedBarHorizontal } from '../../models/card-stacked-bar-horizontal';
 
 @Component({
   selector: 'app-overview',

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import * as c3 from 'c3';
-import { CardStackedBarHorizontal } from '../../models/card-stacked-bar-horizontal';
 
 @Component({
   selector: 'app-card-stacked-bar-horizontal',
@@ -15,11 +14,6 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
   @Input() help_text:string;
   @Input() data = [];
   
-  private parsed_data = {
-    json: [
-
-    ]
-  }
   private chart;
 
   ngOnInit() {
@@ -81,10 +75,9 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
   ngOnChanges() {
     if (this.data.length > 0) {
       this.data[0]['x-axis'] = 0;
-      this.parsed_data.json = this.data;
-      this.chart.unload(this.data);
-      this.chart.load(this.parsed_data);
-      console.log(this.parsed_data.json);
-    }
+      this.chart.load({
+        json: this.data[0]
+      });
+    };
   }
 }
