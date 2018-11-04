@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.controls.password.setErrors(null);
           this.router.navigateByUrl(this.returnUrl);
         }, error => {
+          console.log(error);
           this.loginForm.controls.email.setErrors({'invalid': true});
           this.loginForm.controls.password.setErrors({'invalid': true});
           this.isLoading = false;

@@ -1,0 +1,41 @@
+@import '_variables';
+@import 'card-common';
+
+.contents {
+  float: none;
+  height: 280px;
+  padding: 0;
+
+  .historic-data {
+    padding: $spacing-md;
+    width: 100%;
+
+    .historic-graph {
+      height: calc(100% - #{$spacing-lg} - #{$spacing-sm});
+    }
+  }
+
+  .projection-title, .projection-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: all $animation-normal-speed;
+    // left: 798px;
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  .projection-title {
+    padding: $spacing-md 0 0 $spacing-md;
+    height: 1em;
+  }
+
+  .projection-line {
+    border-left: 1px dashed $color-gray-medium;
+    width: 1px;
+    height: 100%
+  }
+}

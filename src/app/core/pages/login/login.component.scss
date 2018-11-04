@@ -1,5 +1,9 @@
 @import "single-box-page-common";
 
+:host {
+  height: 100%;
+}
+
 form {
   margin-bottom: $spacing-xl;
 }

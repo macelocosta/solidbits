@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -18,17 +18,24 @@ export class TopMenuComponent implements OnInit {
                 });
               }
   
-  private user = { name: 'Macelo' };
+  private userName = this.authSvc.getLocalUserName();
   private isAuthenticated = this.authSvc.isLocalTokenValid();
+  private notifications = [];
   private showLoginBtn:boolean;
+  private isUserMenuVisible:boolean;
+  private isAlarmVisible:boolean;
 
   ngOnInit() {
-    // this.isAuthenticated = false;
   }
   
   updateCurrentRoute(route:string) {
-    // this.isAuthenticated = this.authSvc.isLocalTokenValid();
+    this.isAuthenticated = this.authSvc.isLocalTokenValid();
     let currRoute = route.substring(1);
+    if (currRoute.startsWith('app')) {
+      if (!this.userName) {
+        this.userName = this.authSvc.getLocalUserName();
+      }
+    }
     if (currRoute.length == 0 || currRoute.startsWith('app') || currRoute.startsWith('login') || this.authSvc.isLocalTokenValid()) {
       this.showLoginBtn = false;
     } else {
@@ -36,11 +43,31 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
-  onBrandClick() {
+  onUserMenuClick():void {
+    this.isUserMenuVisible = !this.isUserMenuVisible;
+  }
+
+  onAlarmClick():void {
+    this.isAlarmVisible = true;
+  }
+
+  onOutsideMenuClick():void {
+    this.isUserMenuVisible = false;
+  }
+
+  onOutsideAlarmClick():void {
+    this.isAlarmVisible = false;
+  }
+  
+  onBrandClick():void {
     if (this.authSvc.isLocalTokenValid()) {
       this.router.navigate(['/app']);
     } else {
       this.router.navigate(['']);
     }
+  }
+
+  onLogout():void {
+    this.authSvc.logout();
   }
 }

@@ -1,0 +1,49 @@
+@import '_variables';
+
+.button-group-selector {
+  font-size: 12px;
+  border: 1px solid $color-gray-medium;
+  border-radius: 25px;
+  user-select: none;
+  width: fit-content;
+  background-color: $color-white;
+  
+  li {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      border-left: 1px solid $color-gray-medium;
+    }
+
+    &:hover {
+      color: $color-primary;
+      
+      &:first-child {
+        border-bottom-left-radius: 25px;
+        border-top-left-radius: 25px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 25px;
+        border-top-right-radius: 25px;
+      }
+    }
+
+    &.active {
+      background-color: $color-primary;
+      color: $color-white;
+
+      &:first-child {
+        border-bottom-left-radius: 25px;
+        border-top-left-radius: 25px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 25px;
+        border-top-right-radius: 25px;
+      }
+    }
+  }
+}

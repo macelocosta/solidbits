@@ -9,8 +9,10 @@ import { RecaptchaSettings } from 'ng-recaptcha/recaptcha/recaptcha-settings';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
+import { ClickOutsideDirective } from './directives/click-outside.directive';
+
 import { AuthenticationService } from './services/authentication.service';
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuard } from './guards/auth.guard';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -29,9 +31,19 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     RecaptchaModule.forRoot(),
     CoreRoutingModule
   ],
-  declarations: [TopMenuComponent, LandingComponent, NotFoundComponent, LoginComponent, ResetPasswordComponent, ForgotPasswordComponent],
+  declarations: [
+    TopMenuComponent,
+    LandingComponent,
+    NotFoundComponent,
+    LoginComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
+    ClickOutsideDirective
+  ],
   exports: [RouterModule, TopMenuComponent],
-  providers: [AuthenticationService, AuthGuardService,
+  providers: [
+    AuthenticationService,
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true

@@ -4,18 +4,22 @@
   display: flex;
   flex: 1;
   padding: 0px $spacing-md;
+  height: 100%;
 }
 
 .text-container {
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   text-align: initial;
-  margin-top: 8em;
+  justify-content: center;
   align-items: flex-start;
 
+  h1 {
+    margin-bottom: $spacing-xl;
+  }
+
   span {
-    font-size: 16px;
-    margin-bottom: 24px;
+    margin-bottom: $spacing-xl;
   }
 }

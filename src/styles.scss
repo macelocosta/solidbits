@@ -3,6 +3,7 @@
 @import "_font-face";
 @import "_variables";
 @import "_helpers";
+@import "c3js";
 
 html {
   font-size: 16px;
@@ -10,6 +11,10 @@ html {
 
 body, input, input::placeholder, button {
   font-family: "Work Sans", sans-serif;
+}
+
+.wrap {
+  max-width: 1200px;
 }
 
 button {
@@ -66,10 +71,14 @@ button {
   &.is-nav {
     padding: 0 $spacing-sm;
     height: unset;
+    margin: $spacing-sm 0;
     line-height: unset;
   }
 
   &.is-loading {
+    background-color: $color-primary-darker;
+    box-shadow: 0px 2px 4px 0px rgba($color-primary, 0.3);
+
     &:after {
       animation: spinAround 500ms infinite linear;
       border: 2px solid $color-white;
@@ -109,11 +118,11 @@ button {
 }
 
 label {
-  margin-bottom: $spacing-xm;
+  margin-bottom: $spacing-xs;
 }
 
 input {
-  padding: $spacing-xm;
+  padding: $spacing-xs;
   border: 1px solid $color-gray-medium;
   border-radius: $border-radius-default;
   margin-bottom: $spacing-sm;
@@ -141,40 +150,35 @@ a {
   }
 }
 
-h1 {
-  font-size: 2em;
-  line-height: 2rem;
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-bottom: $spacing-sm;
 }
 
-// .input-icon-wrapper {
-//   width: calc(100% - #{$spacing-sm});
-
-//   > input {
-//     width: calc(100% - #{$spacing-sm});
-//   }
-// }
+h1 {
+  font-size: 2.5rem;
+}
 
 h2 {
-  font-size: 1.5em;
-  line-height: 1.5rem;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.17em;
-  line-height: 1.17rem;
+  font-size: 1.75rem;
 }
 
 h4 {
-  font-size: 1.12em;
-  line-height: 1.12rem;
+  font-size: 1.5rem;
 }
 
 h5 {
-  font-size: .83em;
-  line-height: .83rem;
+  font-size: 1.25em;
 }
 
 h6 {
-  font-size: .75em;
-  line-height: .73rem;
+  font-size: 1rem;
+}
+
+.wrapper {
+  position: relative;
 }

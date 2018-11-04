@@ -1,0 +1,9 @@
+@import 'card-common';
+
+.contents {
+  flex-direction: column;
+
+  .stacked-horizontal-bar {
+    max-width: 100%;
+  }
+}

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from './../services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResetPasswordGuardService {
+export class ResetPasswordGuard {
 
   constructor(private authSvc:AuthenticationService) { }
 

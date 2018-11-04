@@ -55,9 +55,9 @@ export class AuthenticationService {
     this.idle.stop();
     sessionStorage.removeItem(this.tokenIdentifier);
     if (returning) {
-      this.router.navigate(['auth/login'], { queryParams: { redirectTo: this.router.url }});
+      this.router.navigate(['login'], { queryParams: { redirectTo: this.router.url }});
     } else {
-      this.router.navigate(['auth/login']);
+      this.router.navigate(['login']);
     }
   }
 
@@ -126,17 +126,23 @@ export class AuthenticationService {
 
   public getLocalUserName(): any {
     const token = this.getLocalToken();
-    return this.jwtHelper.decodeToken(token).name;
+    if (token) {
+      return this.jwtHelper.decodeToken(token).name;
+    }
   }
 
   public getLocalUserSurname(): any {
     const token = this.getLocalToken();
-    return this.jwtHelper.decodeToken(token).surname;
+    if (token) {
+      return this.jwtHelper.decodeToken(token).surname;
+    }
   }
 
   public getLocalUserEmail(): string {
     const token = this.getLocalToken();
-    return this.jwtHelper.decodeToken(token).email;
+    if (token) {
+      return this.jwtHelper.decodeToken(token).email;
+    }
   }
 
   public getLocalToken(): any {

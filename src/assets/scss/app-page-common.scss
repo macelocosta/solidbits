@@ -1,0 +1,15 @@
+@import "_variables";
+
+.page-title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.button-group-selector.wrapper {
+  display: flex;
+  flex-direction: row;
+
+  *:not(last-child) {
+    margin-left: $spacing-md;
+  }
+}

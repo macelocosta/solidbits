@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
-import { ResetPasswordGuardService as ResetPasswordGuard} from './services/reset-password-guard.service';
+import { AuthGuard } from './guards/auth.guard';
+import { ResetPasswordGuard } from './guards/reset-password.guard';
 
 import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from './pages/login/login.component';

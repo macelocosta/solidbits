@@ -1,0 +1,81 @@
+@import '_variables';
+
+.contents {
+  display: flex;
+  border-radius: $border-radius-default;
+  border: 1px solid $color-gray-medium;
+  background-color: $color-white;
+  padding: $spacing-md;
+  float: left;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+
+  > svg {
+    width: 100% !important;
+  }
+
+  .title {
+    text-transform: uppercase;
+    font-size: $text-card-title-font-size;
+    margin-bottom: $spacing-sm;
+    display: block;
+    max-width: 94%;
+  } 
+
+  .helper {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: $spacing-xs;
+    right: $spacing-xs;
+    border: 1px solid $color-gray-medium;
+    border-radius: 50%;
+    transition: all 250ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+      background-color: $color-primary;
+      border: 1px solid transparent;
+      
+      i {
+        color: $color-white;
+        font-weight: bold;
+      }
+    }
+
+    i {
+      font-size: $text-inner-font-size;
+      color: $color-gray-medium;
+    }
+
+  }
+}
+
+div.is-loading {
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: linear-gradient(to right, #fbfbfb 8%, #efefef 18%, #fbfbfb 33%);
+  background-size: 200% 100%;
+  position: relative;
+  border-radius: $border-radius-default;
+
+  > * {
+    opacity: 0;
+  }
+}
+
+@keyframes placeHolderShimmer{
+  0% {
+    background-position: 100% 0
+  }
+  100% {
+    background-position: -100% 0
+  }
+}

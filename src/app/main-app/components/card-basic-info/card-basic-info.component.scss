@@ -1,0 +1,36 @@
+@import '_variables';
+@import 'card-common';
+
+.contents {
+  height: 128px;
+  flex-direction: column;
+
+  .data {
+    width: 100%;
+    margin-bottom: $spacing-md;
+
+    .value {
+      font-size: 32px;
+      margin-right: $spacing-xs;
+    }
+  }
+
+  .growth-indicator {
+    display: flex;
+    height: 100%;
+
+    .icon {
+      margin-right: $spacing-xs;
+
+      i {
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,16 +1,23 @@
 @import "_variables";
 
+:host {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
 aside {
-  background-color: $color-white;
-  width: $sidebar-width;
-  height: 100%;
   position: fixed;
-  border-left: 1px solid $color-gray-medium;
-  border-right: 1px solid $color-gray-medium;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 186.66px;
+  background-color: $color-white;
+  border-left: 1px solid $color-gray-medium;
+  border-right: 1px solid $color-gray-medium;
   text-align: start;
   box-sizing: border-box;
+  z-index: 1;
 
   li {
     padding: $spacing-md $spacing-xl;
@@ -19,7 +26,7 @@ aside {
     cursor: pointer;
     background-color: none;
     transition: all 150ms;
-    font-size: $text-default-font-size;
+    font-size: $text-inner-font-size;
 
     &:hover > span {
       color: $color-primary;
@@ -53,7 +60,7 @@ aside {
       content: '';
       position: absolute;
       right: -4px;
-      top: 15px;
+      top: $spacing-lg;
       height: 8px;
       width: 8px;
       transform: rotate(45deg);
@@ -70,11 +77,11 @@ aside {
   //   user-select: none;
 
   //   p {
-  //     margin-bottom: $spacing-xm;
+  //     margin-bottom: $spacing-xs;
   //   }
 
   //   i {
-  //     padding-right: $spacing-xm;
+  //     padding-right: $spacing-xs;
   //     font-weight: bold;
 
   //     &.ok {

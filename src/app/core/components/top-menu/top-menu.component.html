@@ -1,23 +1,37 @@
-<nav class="top-menu">
-  <div class="logo-container" [class.add-side-borders]="isAuthenticated" (click)="onBrandClick()" [routerLinkActive]="['add-border-bottom']" [routerLinkActiveOptions]="{exact: true}">
-    <img src="assets/brand.svg"/>
-  </div>
-  <div class="content-wrapper" *ngIf="isAuthenticated">
-    <i class="icon-magnifier"></i>
-    <input type="search" id="search" name="search" placeholder="Buscar locais ou lixeiras" />
-    <i class="icon-alarm"></i>
-    <!-- <i class="icon-cog2"></i> -->
-    <div id="user">
-      <!-- <div class="profile-image">
-        <i class="icon-user"></i>
-      </div> -->
-      <div id="user-menu-container">
-        <span>{{ user.name }}</span>
-        <i class="icon-chevron-down"></i>
+<div class="top-menu-container">
+  <div class="wrap container-fluid">
+    <nav class="row top-menu between-lg">
+      <div class="col-lg-2" (click)="onBrandClick()">
+        <div class="logo-container" [class.add-side-borders]="isAuthenticated" [routerLinkActive]="['add-border-bottom']" [routerLinkActiveOptions]="{exact: true}">
+          <img src="assets/brand.svg"/>
+        </div>
       </div>
-    </div>
+      <div class="content col-lg" *ngIf="isAuthenticated">
+        <i class="icon-magnifier"></i>
+        <input type="search" id="search" name="search" placeholder="Buscar locais ou lixeiras" />
+        <div class="notifications-container wrapper">
+          <i class="icon-alarm" (click)="onAlarmClick()" (clickOutside)="onOutsideAlarmClick()" [class.is-active]="isAlarmVisible"></i>
+          <div class="dropdown" [class.is-visible]="isAlarmVisible">
+            <ul>
+              <li *ngIf="notifications.length == 0">Não há nada aqui por enquanto.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- <i class="icon-cog2"></i> -->
+        <div id="user-menu-container" class="wrapper" (click)="onUserMenuClick()" (clickOutside)="onOutsideMenuClick()" [class.is-active]="isUserMenuVisible">
+          <span>{{ userName }}</span>
+          <i class="icon-chevron-down"></i>
+          <div class="dropdown" [class.is-visible]="isUserMenuVisible">
+            <ul>
+              <li>Perfil</li>
+              <li (click)="onLogout()">Sair</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button *ngIf="showLoginBtn" class="is-nav is-info" [routerLink]="['login']">
+        <span>Entrar</span>
+      </button>
+    </nav>
   </div>
-  <button *ngIf="showLoginBtn" class="is-nav is-info" [routerLink]="['login']">
-    <span>Entrar</span>
-  </button>
-</nav>
+</div>

@@ -1,0 +1,31 @@
+.c3-legend-item {
+  font-size: 12px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+}
+
+.c3-legend-item-tile {
+  shape-rendering: auto;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 10;
+  stroke-width: 10;
+  transform: translate(6px, 1px);
+}
+
+.c3-tooltip td > span {
+  border-radius: 50%;
+}
+
+app-card-stacked-bar-horizontal {
+  .c3 svg {
+    margin-bottom: -$spacing-md;
+  }
+
+  .c3-ygrid-line > line {
+    stroke: none;
+  }
+
+  .c3-xgrid-focus > line {
+    display: none;
+  }
+}

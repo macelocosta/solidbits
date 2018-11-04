@@ -1,0 +1,19 @@
+<div class="contents">
+  <div class="helper tooltip" tooltip="{{ help_text }}" placement="top" show-delay="150" hide-delay="0">
+    <i class="icon-question"></i>
+  </div>
+  <span class="title">{{ title }}</span>
+  <div class="data" id="basic-info-data" [class.is-loading]="!data.value">
+    <span class="value">{{ data.value }}</span>
+    <span class="units">{{ data.units }}</span>
+  </div>
+  <div class="growth-indicator" [class.is-loading]="!data.info">
+    <div class="icon" *ngIf="data.growth">
+      <i *ngIf="data.growth == 'up'" class="icon-chevron-up"></i>
+      <i *ngIf="data.growth == 'down'" class="icon-chevron-down"></i>
+    </div>
+    <div class="info">
+      <span>{{ data.info }}</span>
+    </div>
+  </div>
+</div>
