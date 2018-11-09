@@ -14,14 +14,44 @@
     <app-card-area-projection [title]="'Monitoramento'" [data]="monitoringData" [help_text]="'Exibe informações sobre todas as lixeiras em conjunto'"></app-card-area-projection>
   </div>
 </div>
-<div class="row">
-  <div class="col-lg-2">
-    <app-card-basic-info [title]="'Peso depositado'" [data]="depositedWeight" [help_text]="'Exibe o peso total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
-  </div>
-  <div class="col-lg-2">
-    <app-card-basic-info [title]="'Volume depositado'" [data]="depositedVolume" [help_text]="'Exibe o volume total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
+<div class="row lower-graphs-container">
+  <div class="col-lg-4">
+    <div class="row">
+      <div class="col-lg-6">
+        <app-card-basic-info [title]="'Peso depositado'" [data]="depositedWeight" [help_text]="'Exibe o peso total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
+      </div>
+      <div class="col-lg-6">
+        <app-card-basic-info [title]="'Volume depositado'" [data]="depositedVolume" [help_text]="'Exibe o volume total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-card-individual-horizontal-bars [title]="'Enchimento de lixeiras por locais'" [data]="filledBinsPerArea" [help_text]="'Exibe os locais cujas lixeiras se encontram mais ocupadas'" [x_max]="100" [bar_label_unit]="'%'"></app-card-individual-horizontal-bars>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-card-bar-chart [title]="'Volume de resíduos depositados e coletados'" [data]="volumeTotalDepositedCollected" [help_text]="'Exibe o volume total de resíduos depositados e coletados'"></app-card-bar-chart>
+      </div>
+    </div>
   </div>
   <div class="col-lg-4">
-    <app-card-stacked-bar-horizontal [title]="'Lixeiras por nível de preenchimento'" [data]="binsByFillLevel" [help_text]="'Exibe todas as lixeiras agrupadas por seu nível de preenchimento'"></app-card-stacked-bar-horizontal>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-card-stacked-bar-horizontal [title]="'Nível de preenchimento de lixeiras'" [data]="binsByFillLevel" [help_text]="'Exibe todas as lixeiras agrupadas por seu nível de preenchimento'"></app-card-stacked-bar-horizontal>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-card-individual-horizontal-bars [title]="'Maiores produtores de resíduos'" [data]="biggestWasteProducers" [help_text]="'Locais onde há maior produção de resíduos'"></app-card-individual-horizontal-bars>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <app-card-map [title]="'Distribuição de lixeiras'" [help_text]="'Exibe todas as lixeiras conectadas no mapa'"></app-card-map>
+      </div>
+    </div>
   </div>
 </div>

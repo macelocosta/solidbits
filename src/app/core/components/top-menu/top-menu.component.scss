@@ -30,6 +30,7 @@
     transition: all $animation-normal-speed;
     border-right: 1px solid transparent;
     border-left: 1px solid transparent;
+    // border-bottom: 1px solid $color-primary;
 
     img {
       width: 120px;
@@ -38,10 +39,6 @@
     &.add-side-borders {
       border-right: 1px solid $color-gray-medium;
       border-left: 1px solid $color-gray-medium;
-    }
-
-    &.add-border-bottom {
-      border-bottom: 1px solid $color-primary;
     }
   }
 
@@ -156,8 +153,9 @@
 
   > .dropdown {
     width: 250px;
-    right: -5px;
+    right: -3px;
     top: calc(100% - 5px);
+    height: auto;
   }
 }
 

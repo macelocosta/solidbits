@@ -11,6 +11,9 @@ import { ButtonGroupSelectorComponent } from './components/button-group-selector
 import { CardAreaProjectionComponent } from './components/card-area-projection/card-area-projection.component';
 import { CardBasicInfoComponent } from './components/card-basic-info/card-basic-info.component';
 import { CardStackedBarHorizontalComponent } from './components/card-stacked-bar-horizontal/card-stacked-bar-horizontal.component';
+import { CardIndividualHorizontalBarsComponent } from './components/card-individual-horizontal-bars/card-individual-horizontal-bars.component';
+import { CardBarChartComponent } from './components/card-bar-chart/card-bar-chart.component';
+import { CardMapComponent } from './components/card-map/card-map.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,6 @@ import { CardStackedBarHorizontalComponent } from './components/card-stacked-bar
     TooltipModule,
     MainAppRoutingModule
   ],
-  declarations: [OverviewComponent, MainAppComponent, SidebarComponent, NodesComponent, ButtonGroupSelectorComponent, CardAreaProjectionComponent, CardBasicInfoComponent, CardStackedBarHorizontalComponent]
+  declarations: [OverviewComponent, MainAppComponent, SidebarComponent, NodesComponent, ButtonGroupSelectorComponent, CardAreaProjectionComponent, CardBasicInfoComponent, CardStackedBarHorizontalComponent, CardIndividualHorizontalBarsComponent, CardBarChartComponent, CardMapComponent]
 })
 export class MainAppModule { }

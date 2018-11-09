@@ -1,0 +1,16 @@
+// @import 'variables.scss';
+@import 'card-common';
+
+.contents {
+  height: 260px;
+  flex-direction: column;
+
+  .bar-chart-data {
+    display: flex;
+    height: 100%;
+
+    .bar-chart {
+      width: 100%;
+    }
+  }
+}

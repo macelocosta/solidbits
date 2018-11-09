@@ -46,6 +46,9 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
         type: 'bar',
         order: 'null'
       },
+      zoom: {
+        enabled: false
+      },
       // color: {
       //   pattern: ['#00F37A', '#A7FF34', '#FFFF00', '#FFC31E', '#F35E37']
       // },

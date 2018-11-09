@@ -1,7 +1,13 @@
-.c3-legend-item {
-  font-size: 12px;
-  font-family: 'Work Sans', sans-serif;
+// .c3-legend-item {
+//   font-size: 12px;
+//   font-family: 'Work Sans', sans-serif;
+//   font-weight: 400;
+// }
+
+.c3 svg {
+  font-family: 'Work Sans';
   font-weight: 400;
+  font-size: 11px;
 }
 
 .c3-legend-item-tile {
@@ -19,14 +25,30 @@
 app-card-stacked-bar-horizontal {
   .c3 svg {
     margin-top: -$spacing-md;
-    margin-bottom: -$spacing-md;
+    margin-bottom: -$spacing-lg;
   }
+}
 
+app-card-individual-horizontal-bars {
+  .c3 svg {
+    margin-left: -$spacing-md;
+    width: calc(100% + #{$spacing-md} * 2);
+  }
+}
+
+app-card-stacked-bar-horizontal, app-card-individual-horizontal-bars {
   .c3-ygrid-line > line {
     stroke: none;
   }
 
   .c3-xgrid-focus > line {
     display: none;
+  }
+}
+
+app-card-bar-chart {
+  .c3 svg {
+    margin-left: -$spacing-md;
+    width: calc(100% + #{$spacing-md} * 2);
   }
 }

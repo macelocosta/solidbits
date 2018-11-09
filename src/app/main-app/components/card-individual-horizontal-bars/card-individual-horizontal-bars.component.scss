@@ -1,0 +1,13 @@
+@import "card-common";
+
+.contents {
+  flex-direction: column;
+
+  .simple-bar:not(:last-child) {
+    margin-bottom: $spacing-xs;
+  }
+
+  .place-name {
+    font-size: 14px;
+  }
+}

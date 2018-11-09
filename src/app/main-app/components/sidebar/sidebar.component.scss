@@ -24,7 +24,7 @@ aside {
     list-style: none;
     user-select: none;
     cursor: pointer;
-    background-color: none;
+    // background-color: none;
     transition: all 150ms;
     font-size: $text-inner-font-size;
 
@@ -32,14 +32,20 @@ aside {
       color: $color-primary;
     }
 
-    span {
-      color: $color-black;
-    }
-
     &.active {
       background-color: $color-primary;
       position: relative;
     }
+
+    &:first-child {
+      border-top: 1px solid $color-gray-medium;
+    }
+
+    span {
+      color: $color-black;
+      cursor: pointer;
+    }
+
 
     &.active > span {
       color: $color-white;
@@ -66,6 +72,10 @@ aside {
       transform: rotate(45deg);
       background-color: $color-gray-lighter;
     }
+  }
+
+  .remove-border-top {
+    border-top: 1px solid transparent !important;
   }
 
   // #system-status {

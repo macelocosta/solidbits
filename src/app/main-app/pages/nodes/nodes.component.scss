@@ -1,0 +1,35 @@
+@import 'app-page-common';
+@import 'card-common';
+
+// .contents {
+//   margin: 0;
+//   box-sizing: border-box;
+//   width: 100%;
+//   height: calc(100% - 36px);
+// }
+
+.bin-view-container {
+  height: calc(100% - #{$spacing-lg} * 2);
+}
+
+/deep/ .link {
+  fill: none;
+}
+
+/deep/ g.node.bin {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/deep/ g:first-child {
+  transform: translate(82px, 70px);
+}
+  
+/deep/ .node text { 
+  font-size: 12px;
+}
+  
+/deep/ .node--internal text {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
