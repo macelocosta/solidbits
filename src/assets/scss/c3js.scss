@@ -52,3 +52,9 @@ app-card-bar-chart {
     width: calc(100% + #{$spacing-md} * 2);
   }
 }
+
+app-card-area-projection {
+  svg {
+    margin-left: -$spacing-md;
+  }
+}

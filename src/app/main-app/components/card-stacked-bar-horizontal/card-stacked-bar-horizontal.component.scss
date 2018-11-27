@@ -1,5 +1,9 @@
 @import 'card-common';
 
+:host {
+  height: 128px;
+}
+
 .contents {
   flex-direction: column;
 

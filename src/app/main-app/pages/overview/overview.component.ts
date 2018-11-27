@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CardBasicInfo } from '../../models/card-basic-info';
-import { CardChartData } from '../../models/card-chart-data';
+import { CardData } from '../../models/card-data';
 import { CardDataService } from 'src/app/shared/services/card-data.service';
+import { OptionSelectorService } from 'src/app/shared/services/option-selector.service';
 
 @Component({
   selector: 'app-overview',
@@ -10,39 +10,42 @@ import { CardDataService } from 'src/app/shared/services/card-data.service';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor(private cardDataSvc:CardDataService) { }
+  constructor(private cardDataSvc:CardDataService,
+              private optionSelectorSvc:OptionSelectorService) { }
 
-  private depositedWeight = new CardBasicInfo();
-  private depositedVolume = new CardBasicInfo();
-  private binsByFillLevel = [];
-  private biggestWasteProducers:CardChartData;
-  private filledBinsPerArea:CardChartData;
-  private volumeTotalDepositedCollected:CardChartData;
-  private monitoringData;
+  private currentWeight:CardData;
+  private currentVolume:CardData;
+  private binsByFillLevel:CardData;
+  private biggestWasteProducers:CardData;
+  private filledBinsPerArea:CardData;
+  private volumeTotalDepositedCollected:CardData;
+  private monitoringData:CardData;
   
   ngOnInit() {
-    this.monitoringData = this.cardDataSvc.getMonitoringData().subscribe(
-      data => {
-        console.log(data);
-      }, error => {
-        console.log(error);
+    this.optionSelectorSvc.timeUpdated.subscribe(
+      (time) => {
+        this.getMonitoringData();
       }
-    )
+    );
 
+    this.getCurrentWeight();
+    this.getCurrentVolume();
+    this.getBinsByFillLevel();
 
     setTimeout(() => {
-      this.depositedWeight.value = 2.31;
-      this.depositedWeight.units = 'kg';
-      this.depositedWeight.growth = 'down';
-      this.depositedWeight.info = '-5%';
+      // this.depositedWeight.value = 2.31;
+      // this.depositedWeight.units = 'kg';
+      // this.depositedWeight.growth = 'down';
+      // this.depositedWeight.info = '-5%';
       
-      this.binsByFillLevel = [{'below20': 6, 'between20_50': 7, 'between50_70': 2, 'between70_90': 3, 'above90': 1}];
+      // this.binsByFillLevel = [{'below20': 6, 'between20_50': 7, 'between50_70': 2, 'between70_90': 3, 'above90': 1}];
     }, 3000);
+
     setTimeout(() => {
-      this.depositedVolume.value = 0.23;
-      this.depositedVolume.units = 'l';
-      this.depositedVolume.growth = 'down';
-      this.depositedVolume.info = '-2%';
+      // this.depositedVolume.value = 0.23;
+      // this.depositedVolume.units = 'l';
+      // this.depositedVolume.growth = 'down';
+      // this.depositedVolume.info = '-2%';
 
       this.volumeTotalDepositedCollected = {
         json: [
@@ -59,22 +62,24 @@ export class OverviewComponent implements OnInit {
         xFormat: '%Y-%m-%d'
       };
     }, 3500);
+
     setTimeout(() => {
-      this.binsByFillLevel = [{'below20': 7, 'between20_50': 2, 'between50_70': 6, 'between70_90': 1, 'above90': 3}];
-      this.volumeTotalDepositedCollected.json = [
-        {date: '2018-09-08', deposited: 1.32, collected: 1.46},
-        {date: '2018-09-07', deposited: 1.75, collected: 1.98},
-        {date: '2018-09-06', deposited: 1.60, collected: 1.09},
-        {date: '2018-09-05', deposited: 1.67, collected: 1.21},
-        {date: '2018-09-04', deposited: 1.05, collected: 0.18},
-        {date: '2018-09-03', deposited: 0.08, collected: 1.06},
-        {date: '2018-09-02', deposited: 1.23, collected: 1.13}
-      ];
+      // this.binsByFillLevel = [{'below20': 7, 'between20_50': 2, 'between50_70': 6, 'between70_90': 1, 'above90': 3}];
+      // this.volumeTotalDepositedCollected.json = [
+      //   {date: '2018-09-08', deposited: 1.32, collected: 1.46},
+      //   {date: '2018-09-07', deposited: 1.75, collected: 1.98},
+      //   {date: '2018-09-06', deposited: 1.60, collected: 1.09},
+      //   {date: '2018-09-05', deposited: 1.67, collected: 1.21},
+      //   {date: '2018-09-04', deposited: 1.05, collected: 0.18},
+      //   {date: '2018-09-03', deposited: 0.08, collected: 1.06},
+      //   {date: '2018-09-02', deposited: 1.23, collected: 1.13}
+      // ];
       //update entire object so onChanges detects its changes
       this.volumeTotalDepositedCollected = Object.assign({}, this.volumeTotalDepositedCollected);
     }, 6000);
+
     setTimeout(() => {
-      this.binsByFillLevel = [{'below20': 4, 'between20_50': 1, 'between50_70': 3, 'between70_90': 5, 'above90': 2}];
+      // this.binsByFillLevel = [{'below20': 4, 'between20_50': 1, 'between50_70': 3, 'between70_90': 5, 'above90': 2}];
 
       this.volumeTotalDepositedCollected.json = [
         {date: '2018-09-08', deposited: 0.32, collected: 0.46},
@@ -88,6 +93,7 @@ export class OverviewComponent implements OnInit {
       //update entire object so onChanges detects its changes
       this.volumeTotalDepositedCollected = Object.assign({}, this.volumeTotalDepositedCollected);
     }, 9000);
+
     setTimeout(() => {
       this.biggestWasteProducers = {
         json: [
@@ -112,6 +118,7 @@ export class OverviewComponent implements OnInit {
         names: {place: 'Lugar', value: 'Porcentagem ocupada'}
       };
     }, 2000);
+
     setTimeout(() => {
       this.biggestWasteProducers.json = [
         {'place': 'Biblioteca', 'value': 21.90},
@@ -122,5 +129,51 @@ export class OverviewComponent implements OnInit {
       ];
       this.biggestWasteProducers = Object.assign({}, this.biggestWasteProducers);
     }, 4000);
+  }
+
+  getMonitoringData() {
+    this.cardDataSvc.getMonitoringData().subscribe(
+      data => {
+        this.monitoringData = data;
+        this.monitoringData.errorLoading = false;
+      }, error => {
+        console.log(error);
+        this.monitoringData.errorLoading = true;
+      }
+    )
+  }
+
+  getCurrentWeight() {
+    this.cardDataSvc.getCurrentWeight().subscribe(
+      data => {
+        let data_ = data;
+        data_.units = 'kg';
+        this.currentWeight = data_;
+      }, error => {
+        console.log(error);
+        // this.depositedWeight.errorLoading = true;
+      }
+    )
+  }
+
+  getCurrentVolume() {
+    this.cardDataSvc.getCurrentVolume().subscribe(
+      data => {
+        this.currentVolume = data;
+      }, error => {
+        console.log(error);
+        // this.depositedWeight.errorLoading = true;
+      }
+    )
+  }
+
+  getBinsByFillLevel() {
+    this.cardDataSvc.getBinsByFillLevel().subscribe(
+      data => {
+        this.binsByFillLevel = data;
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 }

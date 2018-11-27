@@ -3,12 +3,12 @@
     <i class="icon-question"></i>
   </div>
   <span class="title">{{ title }}</span>
-  <div class="data" id="basic-info-data" [class.is-loading]="!data.value">
+  <div class="data" id="basic-info-data" [class.is-loading]="!data && !data.value">
     <span class="value">{{ data.value }}</span>
     <span class="units">{{ data.units }}</span>
   </div>
-  <div class="growth-indicator" [class.is-loading]="!data.info">
-    <div class="icon" *ngIf="data.growth">
+  <div class="growth-indicator" [class.is-loading]="!data && !data.info">
+    <div class="icon">
       <i *ngIf="data.growth == 'up'" class="icon-chevron-up"></i>
       <i *ngIf="data.growth == 'down'" class="icon-chevron-down"></i>
     </div>

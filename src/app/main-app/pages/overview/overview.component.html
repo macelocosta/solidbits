@@ -4,24 +4,24 @@
   </div>
   <div class="col-lg-6">
     <div class="button-group-selector wrapper end-lg">
-      <app-button-group-selector [values]="['Volume em l', 'm³']"></app-button-group-selector>
-      <app-button-group-selector [values]="['Por hora', 'dia', 'semana', 'mês']"></app-button-group-selector>
+      <app-button-group-selector [type]="'volume'"></app-button-group-selector>
+      <app-button-group-selector [type]="'time'"></app-button-group-selector>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-lg-12">
-    <app-card-area-projection [title]="'Monitoramento'" [data]="monitoringData" [help_text]="'Exibe informações sobre todas as lixeiras em conjunto'"></app-card-area-projection>
+    <app-card-area-projection [title]="'Monitoramento'" [data]="monitoringData" [help_text]="'Exibe informações sobre todas as lixeiras em conjunto'"[error_loading]="monitoringData && monitoringData.errorLoading"></app-card-area-projection>
   </div>
 </div>
 <div class="row lower-graphs-container">
   <div class="col-lg-4">
     <div class="row">
       <div class="col-lg-6">
-        <app-card-basic-info [title]="'Peso depositado'" [data]="depositedWeight" [help_text]="'Exibe o peso total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
+        <app-card-basic-info [title]="'Peso depositado'" [data]="currentWeight" [help_text]="'Exibe o peso total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
       </div>
       <div class="col-lg-6">
-        <app-card-basic-info [title]="'Volume depositado'" [data]="depositedVolume" [help_text]="'Exibe o volume total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
+        <app-card-basic-info [title]="'Volume depositado'" [data]="currentVolume" [help_text]="'Exibe o volume total dos resíduos depositados em todas as lixeiras'"></app-card-basic-info>
       </div>
     </div>
     <div class="row">

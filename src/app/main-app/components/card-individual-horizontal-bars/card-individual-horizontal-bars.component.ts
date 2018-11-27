@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, AfterViewInit, OnChanges } from '@angular/core';
 import * as c3 from 'c3';
 import { InstanceIdHelperService } from '../../services/instance-id-helper.service';
-import { CardChartData } from '../../models/card-chart-data';
+import { CardData } from '../../models/card-data';
 
 @Component({
   selector: 'app-card-individual-horizontal-bars',
@@ -13,7 +13,7 @@ export class CardIndividualHorizontalBarsComponent implements OnInit, AfterViewI
   constructor(private instanceIdHelperSvc:InstanceIdHelperService) { }
 
   @Input() title:string;
-  @Input() data:CardChartData;
+  @Input() data:CardData;
   @Input() help_text:string;
   @Input() x_max:number;
   @Input() bar_label_unit:string;
@@ -44,6 +44,9 @@ export class CardIndividualHorizontalBarsComponent implements OnInit, AfterViewI
       },
       zoom: {
         enabled: false
+      },
+      color: {
+        pattern: ['#3556DE', '#183195']
       },
       axis: {
         x: {

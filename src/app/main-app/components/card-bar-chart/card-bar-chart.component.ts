@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, AfterViewInit } from '@angular/core';
 import * as c3 from 'c3';
 import { InstanceIdHelperService } from '../../services/instance-id-helper.service';
-import { CardChartData } from '../../models/card-chart-data';
+import { CardData } from '../../models/card-data';
 
 @Component({
   selector: 'app-card-bar-chart',
@@ -14,7 +14,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() title:string;
   @Input() help_text:string;
-  @Input() data:CardChartData;
+  @Input() data:CardData;
 
   private instance_id = this.instanceIdHelperSvc.getRandomId(6);
   private chart;
@@ -36,6 +36,9 @@ export class CardBarChartComponent implements OnInit, AfterViewInit, OnChanges {
             format: '%d'
           },
         }
+      },
+      color: {
+        pattern: ['#3556DE', '#183195']
       },
       // padding: {
       //   top: 0,

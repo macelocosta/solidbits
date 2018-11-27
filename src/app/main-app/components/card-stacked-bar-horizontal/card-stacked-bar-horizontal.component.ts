@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import * as c3 from 'c3';
+import { CardData } from '../../models/card-data';
 
 @Component({
   selector: 'app-card-stacked-bar-horizontal',
@@ -12,7 +13,7 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
 
   @Input() title:string;
   @Input() help_text:string;
-  @Input() data = [];
+  @Input() data:CardData;
   
   private chart;
 
@@ -24,34 +25,25 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
     this.chart = c3.generate({
       bindto: '.stacked-horizontal-bar',
       size: {
-        height: 128
+        height: 103
       },
       data: {
         x: 'x-axis',
-        json: this.data,
-        keys: {
-          x: 'x-axis',
-          value: ['below20', 'between20_50', 'between50_70', 'between70_90', 'above90']
-        },
-        names: {
-          'below20': 'Até 20%',
-          'between20_50': '20% - 50%',
-          'between50_70': '50% - 70%',
-          'between70_90': '70% - 90%',
-          'above90': 'Mais de 90%'
-        },
-        groups: [
-          ['below20', 'between20_50', 'between50_70', 'between70_90', 'above90']
-        ],
+        json: [],
         type: 'bar',
         order: 'null'
       },
       zoom: {
         enabled: false
       },
-      // color: {
-      //   pattern: ['#00F37A', '#A7FF34', '#FFFF00', '#FFC31E', '#F35E37']
-      // },
+      color: {
+        pattern: ['#8cc34b', '#cddc39', '#ffe93b', '#fec107', '#fe9900']
+      },
+      bar: {
+        width: {
+          ratio: 1
+        }
+      },
       tooltip: {
         grouped: false,
         format: {
@@ -65,6 +57,11 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
       },
       axis: {
         rotated: true,
+        y: {
+          tick: {
+            format: function(x) { return x % 1 === 0 ? x : ''; }
+          }
+        }
       },
       padding: {
         top: 0,
@@ -76,10 +73,14 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
   }
   
   ngOnChanges() {
-    if (this.data.length > 0) {
-      this.data[0]['x-axis'] = 0;
+    if (this.data) {
+      // this.data[0]['x-axis'] = 0;
+      // console.log(this.data);
       this.chart.load({
-        json: this.data[0]
+        json: this.data.json,
+        keys: this.data.keys,
+        names: this.data.names,
+        groups: this.data.groups
       });
     };
   }

@@ -1,3 +1,3 @@
 <ul class="button-group-selector" [id]="instance_id">
-  <li *ngFor="let value of values; let i = index" (click)="toggleActive(i)">{{ value }}</li>
+  <li *ngFor="let value of values; let i = index" (click)="toggleActive(i)">{{ value.desc }}</li>
 </ul>

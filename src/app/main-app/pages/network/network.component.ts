@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import * as d3 from 'd3';
 
 @Component({
-  selector: 'app-nodes',
-  templateUrl: './nodes.component.html',
-  styleUrls: ['./nodes.component.scss']
+  selector: 'app-network',
+  templateUrl: './network.component.html',
+  styleUrls: ['./network.component.scss']
 })
-export class NodesComponent implements OnInit {
+export class NetworkComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -18,7 +18,7 @@ export class NodesComponent implements OnInit {
     id: "0a3fgU",
     children: [
       {
-        name: "Área de convivência",
+        name: "Area de convivência",
         type: "location",
         status: 0,
         id:"9cFtbZ",
@@ -29,22 +29,10 @@ export class NodesComponent implements OnInit {
             status: 0,
             id:"87cgad"
           },
-          {
-            name: "Lixeira 2",
-            type: "bin",
-            status: 0,
-            id:"87cgae"
-          },
-          {
-            name: "Lixeira 3",
-            type: "bin",
-            status: 0,
-            id:"87cgaf"
-          }
         ]
       },
       {
-        name: "Bloco 1",
+        name: "Bloco 2",
         type: "location",
         status: 0,
         id:"87c78s",
@@ -78,13 +66,83 @@ export class NodesComponent implements OnInit {
               {
                 name: "Lixeira 2",
                 type: "bin",
-                status: 1,
+                status: 0,
                 id:"87gpaw"
               }
             ]
           },
         ]
       },
+      {
+        name: "Bloco 3",
+        type: "location",
+        status: 0,
+        id:"87c78s",
+        children: [
+          {
+            name: "Sala 1",
+            type: "location",
+            status: 0,
+            id:"87c78c",
+            children: [
+              {
+                name: "Lixeira 1",
+                type: "bin",
+                status: 0,
+                id:"87gtaf"
+              }
+            ]
+          },
+          {
+            name: "Sala 2",
+            type: "location",
+            status: 0,
+            id:"89c78c",
+            children: [
+              {
+                name: "Lixeira 1",
+                type: "bin",
+                status: 0,
+                id:"87gtaw"
+              },
+              {
+                name: "Lixeira 2",
+                type: "bin",
+                status: 0,
+                id:"87gpaw"
+              },
+              {
+                name: "Lixeira 3",
+                type: "bin",
+                status: 1,
+                id:"87gpaw"
+              },
+              {
+                name: "Sub-sala 1",
+                type: "location",
+                status: 0,
+                id:"89c78c",
+                children: [
+                  {
+                    name: "Sub-sala 2",
+                    type: "location",
+                    status: 0,
+                    id:"89c78c",
+                    children: [
+                      {
+                        name: "Lixeira 1",
+                        type: "bin",
+                        status: 0,
+                        id:"87gpaw"
+                      },
+                    ]
+                  },
+                ]
+              }
+            ]
+          },
+        ]
+      }
     ]
   };
 
@@ -122,11 +180,11 @@ export class NodesComponent implements OnInit {
         })
         .attr("stroke", function(d) {
           if (d.data.status == 0) {
-            return "#20db75";
+            return "#8CC34B";
           } else if (d.data.status == 1) {
-            return "#fca813";
+            return "#FE3517";
           } else {
-            return "#FE2424";
+            return "#8CC34B";
           }
         })
     
@@ -168,11 +226,11 @@ export class NodesComponent implements OnInit {
           }
         }).attr("fill", function(d) {
           if (d.data.status == 0) {
-            return "#20db75";
+            return "#8CC34B";
           } else if (d.data.status == 1) {
-            return "#fca813";
+            return "#FE3517";
           } else {
-            return "#FE2424";
+            return "#8CC34B";
           }
         });
 

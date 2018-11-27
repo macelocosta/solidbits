@@ -1,18 +1,13 @@
-@import '_variables';
 @import 'card-common';
 
 .contents {
-  float: none;
   height: 280px;
-  padding: 0;
+  flex-direction: column;
 
-  .historic-data {
-    padding: $spacing-md;
-    width: 100%;
-
-    .historic-graph {
-      height: calc(100% - #{$spacing-lg} - #{$spacing-sm});
-    }
+  .historic-chart-data {
+    position: relative;
+    display: flex;
+    flex: 1;
   }
 
   .projection-title, .projection-line {

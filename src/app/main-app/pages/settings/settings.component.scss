@@ -1,0 +1,13 @@
+@import 'app-page-common';
+
+form {
+  // flex-direction: column;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: calc(100% - #{$spacing-xs});
+}
