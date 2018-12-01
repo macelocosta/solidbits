@@ -28,10 +28,10 @@ export class CardAreaProjectionComponent implements OnInit, AfterViewInit, OnCha
   ngAfterViewInit() {
     this.chart = c3.generate({
       bindto: '.historic-chart-data > .chart',
-      // size: {
-      //   height: 130,
-      //   width: 170
-      // },
+      size: {
+        height: 236,
+        // width: 170
+      },
       data: {
         json: [],
         x: 'time',

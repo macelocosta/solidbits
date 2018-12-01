@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { NgIdleModule } from '@ng-idle/core';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -12,6 +13,7 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     NgIdleModule.forRoot(),
     LoadingBarHttpClientModule

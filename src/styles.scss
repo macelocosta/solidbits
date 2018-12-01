@@ -21,7 +21,7 @@ button {
   border: none;
   border-radius: $border-radius-default;
   transition: all $animation-normal-speed;
-  display: flex;
+  display: inline-flex;
   align-content: center;
   justify-content: center;
 
@@ -31,6 +31,7 @@ button {
 
   > span {
     align-self: center;
+    user-select: none;
 
     &.is-loading-text {
       display: none;
@@ -58,9 +59,22 @@ button {
     line-height: $btn-lg-font-size;
   }
 
+  &.is-basic {
+    color: $color-black;
+    background-color: $color-white;
+    box-shadow: 0px 2px 10px 0px rgba($color-black, 0.2);
+
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba($color-black, 0.15);
+      // border: 1px solid $color-primary;
+      background-color: $color-white;
+      color: $color-primary;
+    }
+  }
+
   &.is-info {
     color: $color-white;
-    background-color: $color-primary;
+    background-color: rgba($color-primary, 1.0);
     box-shadow: 0px 2px 10px 0px rgba($color-primary, 0.3);
 
     &:hover {
@@ -76,12 +90,17 @@ button {
   }
 
   &.is-loading {
-    background-color: $color-primary-darker;
-    box-shadow: 0px 2px 4px 0px rgba($color-primary, 0.3);
+    // background-color: $color-primary-darker;
+    // box-shadow: 0px 2px 4px 0px rgba($color-primary, 0.3);
+    background-color: rgba($color-primary, 0.0);
+    box-shadow: none;
+    border: none;
+    color: $color-primary;
 
     &:after {
       animation: spinAround 500ms infinite linear;
-      border: 2px solid $color-white;
+      // border: 2px solid $color-white;
+      border: 2px solid $color-primary;
       border-radius: 50%;
       border-right-color: transparent;
       border-top-color: transparent;
@@ -103,18 +122,26 @@ button {
     }
   }
 
-  &:not(.is-disabled):not(.is-loading):hover {
-    background-color: $color-primary-lighter;
-  }
+  // &:not(.is-disabled):not(.is-loading):hover {
+  //   background-color: $color-primary-lighter;
+  // }
 
   // takeaway to use different colors both on hover and active states
-  &:active:not(.is-disabled):not(.is-loading):hover {
+  &:active.is-info:hover {
     background-color: $color-primary-darker;
+  }
+
+  &:active.is-basic:hover {
+    background-color: $color-gray-medium;
   }
 
   &.disabled {
     opacity: 0.5;
   }
+}
+
+.btn-group > button:not(:last-child) {
+  margin-right: $spacing-md;
 }
 
 label {
@@ -135,7 +162,7 @@ input {
 
 a {
   &:hover:not(.is-danger) {
-    color: $color-primary !important;
+    color: $color-primary;
   }
 }
 
@@ -181,4 +208,9 @@ h6 {
 
 .wrapper {
   position: relative;
+}
+
+.is-visible {
+  visibility: visible !important;
+  opacity: 1 !important;
 }

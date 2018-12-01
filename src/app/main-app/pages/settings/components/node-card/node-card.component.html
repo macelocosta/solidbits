@@ -1,0 +1,11 @@
+<div class="node-card" draggable="true">
+  <div class="hover-contents">
+    <i title="Excluir" class="delete icon-trash2"></i>
+    <i title="Editar" class="edit icon-pencil"></i>
+  </div>
+  <div class="add-new" *ngIf="type == 'add-bin' || type == 'add-space'">
+    <i class="icon-plus"></i>
+    <p *ngIf="type == 'add-bin'">Adicionar lixeira</p>
+    <p *ngIf="type == 'add-space'">Adicionar área ou edifício</p>
+  </div>
+</div>

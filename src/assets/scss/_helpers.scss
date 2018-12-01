@@ -8,9 +8,9 @@ p.is-help {
 }
 
 input.is-warning {
-  border-color: $color-red !important;
+  border-color: $color-red;
 }
 
 .is-warning:not(input) {
-  color: $color-red !important;
+  color: $color-red;
 }

@@ -17,7 +17,15 @@ export class JwtInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token}`
         }
       });
+      
     }
+
+    // TODO: me tire daqui!!!!!!!
+    const url = 'https://35.231.69.44';
+    request = request.clone({
+      url: url + request.url
+    });
+
     return next.handle(request);
   }
 }

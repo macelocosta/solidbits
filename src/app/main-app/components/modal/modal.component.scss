@@ -1,0 +1,50 @@
+@import '_variables';
+
+:host {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  background: rgba($color-gray-medium, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  transition: all $animation-normal-speed;
+
+  .modal {
+    border: 1px solid $color-gray-medium;
+    background-color: $color-white;
+    border-radius: $border-radius-default;
+    padding: $spacing-md;
+    box-shadow: 0px 0px 20px 0px rgba($color-gray-darker, 0.1);
+    width: 512px;
+
+    .btn-group {
+      margin-top: $spacing-sm;
+    }
+
+    h5 {
+      margin-top: 0;
+    }
+
+    form {
+      width: calc(100% - #{$spacing-md});
+  
+      label {
+        display: block;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .content {
+      margin: $spacing-md 0;
+    }
+  }
+}

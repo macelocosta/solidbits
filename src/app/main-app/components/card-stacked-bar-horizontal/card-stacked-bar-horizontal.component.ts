@@ -31,7 +31,8 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
         x: 'x-axis',
         json: [],
         type: 'bar',
-        order: 'null'
+        order: 'null',
+        groups: [['below20', 'between20_50', 'between50_70', 'between70_90', 'above90']]
       },
       zoom: {
         enabled: false
@@ -41,7 +42,7 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
       },
       bar: {
         width: {
-          ratio: 1
+          ratio: 0.8
         }
       },
       tooltip: {
@@ -75,7 +76,7 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
   ngOnChanges() {
     if (this.data) {
       // this.data[0]['x-axis'] = 0;
-      // console.log(this.data);
+      console.log(this.data);
       this.chart.load({
         json: this.data.json,
         keys: this.data.keys,

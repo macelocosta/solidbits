@@ -1,13 +1,17 @@
 @import 'app-page-common';
 
-form {
+// form {
   // flex-direction: column;
-}
+// }
 
 label {
   display: block;
 }
 
+.label {
+  margin-bottom: $spacing-xs;
+}
+
 input {
-  width: calc(100% - #{$spacing-xs});
+  width: calc(100% - #{$spacing-md});
 }

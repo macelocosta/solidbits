@@ -1,60 +1,45 @@
 <div class="row middle-lg middle-lg between-lg">
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <h5 class="page-title start-lg">Configurações</h5>
   </div>
-  <!-- <div class="col-lg-6">
-    <div class="button-group-selector wrapper end-lg">
-      <app-button-group-selector [type]="'volume'"></app-button-group-selector>
-      <app-button-group-selector [type]="'time'"></app-button-group-selector>
-    </div>
-  </div> -->
 </div>
-<form class="row" action="">
+<form [formGroup]="businessForm" class="row" action="">
   <div class="col-lg-6">
-    <label for="nome">Nome da instituição</label>
-    <input autofocus type="text" id="nome">
+    <label for="name">Nome da instituição</label>
+    <input type="text" id="name" name="name" formControlName="name" [class.is-warning]="f.name.dirty && f.name.invalid || formSubmitted && f.name.invalid">
+    <p class="is-help is-warning" *ngIf="f.name.dirty && f.name.errors?.required || formSubmitted && f.name.errors?.required">Insira o nome da instituição.</p>
+    <p class="is-help is-warning" *ngIf="f.name.dirty && f.name.errors?.minlength || formSubmitted && f.name.errors?.minlength">O nome precisa ter ao menos quatro caracteres.</p>
   </div>
   <div class="col-lg-2">
-    <label for="abrev">Abreviação</label>
-    <input autofocus type="text" id="abrev">
+    <label for="abbrev">Abreviação</label>
+    <input type="text" id="abbrev" name="abbrev" formControlName="abbrev" [class.is-warning]="f.abbrev.dirty && f.abbrev.invalid || formSubmitted && f.abbrev.invalid">
+    <p class="is-help is-warning" *ngIf="f.abbrev.dirty && f.abbrev.errors?.required || formSubmitted && f.abbrev.errors?.required">Insira o nome da instituição.</p>
+    <p class="is-help is-warning" *ngIf="f.abbrev.dirty && f.abbrev.errors?.minlength || formSubmitted && f.abbrev.errors?.minlength">A abreviação precisa ter ao menos dois caracteres.</p>
   </div>
   <div class="col-lg-4">
-    <label for="local">Localização</label>
-    <input autofocus type="text" id="local">
+    <label for="location">Localização</label>
+    <input type="text" id="location" name="location" formControlName="location" [class.is-warning]="f.location.dirty && f.location.invalid || formSubmitted && f.location.invalid">
+    <p class="is-help is-warning" *ngIf="f.location.dirty && f.location.errors?.required || formSubmitted && f.location.errors?.required">Insira o nome da instituição.</p>
+    <p class="is-help is-warning" *ngIf="f.location.dirty && f.location.errors?.minlength || formSubmitted && f.location.errors?.minlength">A localização precisa ter ao menos dois caracteres.</p>
   </div>
 </form>
 <div class="row">
-  <h6 class="col-lg-12">Arranjo físico</h6>
-  <div class="row">
-    <div class="col-lg-2">
-      <span class="tt">BLOCO 1</span>
-      <span class="mini">10 salas</span>
-      <span class="mini">14 lixeiras</span>
-    </div>
-    <div class="col-lg-2">
-      <span class="tt">BLOCO 2</span>
-      <span class="mini">10 salas</span>
-      <span class="mini">14 lixeiras</span>
-    </div>
-    <div class="col-lg-2">
-      <span class="tt">BLOCO 3</span>
-      <span class="mini">10 salas</span>
-      <span class="mini">14 lixeiras</span>
-    </div>
-    <div class="col-lg-2">
-      <span class="tt">BLOCO 4</span>
-      <span class="mini">10 salas</span>
-      <span class="mini">14 lixeiras</span>
-    </div>
-    <div class="col-lg-2">
-      <span class="tt">BLOCO ADMINISTRATIVO</span>
-      <span class="mini">10 salas</span>
-      <span class="mini">14 lixeiras</span>
-    </div>
-    <div class="col-lg-2">
-      <span class="tt">INTERBLOCOS</span>
-      <span class="mini">10 salas</span>
-      <span class="mini">14 lixeiras</span>
-    </div>
+  <span class="col-lg-12 label">Arranjo físico</span>
+  <div class="col-lg-2" *ngFor="let node of lastValues.children">
+    <app-node-card></app-node-card>
+  </div>
+  <div class="col-lg-2">
+    <app-node-card [type]="'add-bin'" (click)="onNewNode()"></app-node-card>
+  </div>
+  <div class="col-lg-2">
+    <app-node-card [type]="'add-space'"></app-node-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 end-lg btn-group">
+    <button class="is-info is-md" [class.is-loading]="isLoading" (click)="onSave()">
+      <span>Salvar</span>
+      <span class="is-loading-text">Salvando...</span>
+    </button>
   </div>
 </div>

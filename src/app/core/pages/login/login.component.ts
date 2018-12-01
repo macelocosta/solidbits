@@ -22,6 +22,12 @@ export class LoginComponent implements OnInit {
   private isLoading:boolean;
 
   ngOnInit() {
+    this.authSvc.isAuthenticated().map(data => {
+      if (data) {
+        this.router.navigate(['app/overview']);
+      }
+    });
+
     this.loginForm = new FormGroup({
       email: new FormControl('', { validators: Validators.compose([Validators.required, Validators.email])}),
       password: new FormControl('', { validators: Validators.compose([Validators.required, Validators.minLength(8)])})
@@ -42,6 +48,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    let e_val = (<HTMLInputElement>document.getElementById('email')).value;
+    let p_val = (<HTMLInputElement>document.getElementById('password')).value;
+    this.f.email.setValue(e_val);
+    this.f.password.setValue(p_val);
+    this.f.email.updateValueAndValidity();
+    this.f.password.updateValueAndValidity();
     let email_invalid = this.loginForm.controls.email.hasError('invalid');
     let password_invalid = this.loginForm.controls.password.hasError('invalid');
     if (this.isLoading || this.lastSentData && this.loginForm.controls.email.value == this.lastSentData.email && this.loginForm.controls.password.value == this.lastSentData.password) {
