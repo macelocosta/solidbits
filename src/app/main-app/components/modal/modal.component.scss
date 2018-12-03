@@ -31,12 +31,16 @@
       margin-top: 0;
     }
 
+    label {
+      display: block;
+    }
+
+    input {
+      width: -webkit-fill-available;
+    }
+
     form {
       width: calc(100% - #{$spacing-md});
-  
-      label {
-        display: block;
-      }
 
       input {
         width: 100%;

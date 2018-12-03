@@ -3,12 +3,14 @@ export class Business {
   name: string;
   abbrev?: string;
   location: string;
-  children?: any;
+  floors?: [{
+    name: string;
+  }];
 
-  constructor(id, name, abbrev, location, children) {
+  constructor(id, name, abbrev, location, floors) {
     this.name = name;
     this.abbrev = abbrev;
     this.location = location;
-    this.children = children;
+    this.floors = floors;
   }
 }

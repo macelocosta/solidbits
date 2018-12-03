@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, Input, OnChanges } from '@angular/core';
 
 import { InstanceIdHelperService } from './../../services/instance-id-helper.service';
-import { OptionSelectorService } from 'src/app/shared/services/option-selector.service';
+import { OptionSelectorService } from './../../services/option-selector.service';
 
 @Component({
   selector: 'app-button-group-selector',

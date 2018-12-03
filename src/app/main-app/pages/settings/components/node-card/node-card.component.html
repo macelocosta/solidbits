@@ -1,11 +1,12 @@
-<div class="node-card" draggable="true">
-  <div class="hover-contents">
+<div class="node-card" draggable="true" [class.add-new]="type == 'add'">
+  <div class="hover-contents" *ngIf="type == 'curr'">
     <i title="Excluir" class="delete icon-trash2"></i>
     <i title="Editar" class="edit icon-pencil"></i>
   </div>
-  <div class="add-new" *ngIf="type == 'add-bin' || type == 'add-space'">
+  <div class="add-new" *ngIf="type == 'add'">
     <i class="icon-plus"></i>
-    <p *ngIf="type == 'add-bin'">Adicionar lixeira</p>
-    <p *ngIf="type == 'add-space'">Adicionar área ou edifício</p>
+    <p *ngIf="cat == 'bin'">Adicionar lixeira</p>
+    <p *ngIf="cat == 'space'">Adicionar área ou edifício</p>
+    <p *ngIf="cat == 'floor'">Adicionar andar</p>
   </div>
 </div>

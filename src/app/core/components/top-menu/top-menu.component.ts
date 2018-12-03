@@ -19,7 +19,7 @@ export class TopMenuComponent implements OnInit {
               }
   
   private userName = this.authSvc.getLocalUserName();
-  private isAuthenticated = this.authSvc.isLocalTokenValid();
+  private isAuthenticated = false;
   private notifications = [];
   private showLoginBtn:boolean;
   private isUserMenuVisible:boolean;
@@ -29,7 +29,9 @@ export class TopMenuComponent implements OnInit {
   }
   
   updateCurrentRoute(route:string) {
-    this.isAuthenticated = this.authSvc.isLocalTokenValid();
+    this.authSvc.isAuthenticated().map(isAuth => {
+      this.isAuthenticated = isAuth;
+    });
     let currRoute = route.substring(1);
     if (currRoute.startsWith('app')) {
       if (!this.userName) {

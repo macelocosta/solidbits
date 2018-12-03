@@ -10,6 +10,7 @@ export class NodeCardComponent implements OnInit {
   constructor() { }
 
   @Input() type:string;
+  @Input() cat:string;
 
   ngOnInit() {
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardData } from '../../models/card-data';
-import { CardDataService } from 'src/app/shared/services/card-data.service';
-import { OptionSelectorService } from 'src/app/shared/services/option-selector.service';
+import { CardDataService } from './../../services/card-data.service';
+import { OptionSelectorService } from './../../services/option-selector.service';
 
 @Component({
   selector: 'app-overview',

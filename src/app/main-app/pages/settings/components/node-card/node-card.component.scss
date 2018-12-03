@@ -17,6 +17,7 @@
   
   &:hover {
     border-color: $color-primary;
+    color: $color-primary;
      
     * {
       cursor: pointer;
@@ -27,17 +28,22 @@
     }
   }
 
+  &.add-new {
+    border-style: dashed;
+  }
+
   .hover-contents {
     position: absolute;
     top: $spacing-md;
     right: $spacing-sm;
     opacity: 0;
-    transition: all $animation-normal-speed;
-
+    
     i {
       padding: $spacing-xs;
       border-radius: 50%;
       background-color: $color-white;
+      transition: all $animation-normal-speed;
+      color: $color-primary;
     }
 
     .delete:hover {

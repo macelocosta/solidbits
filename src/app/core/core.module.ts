@@ -6,14 +6,10 @@ import { SharedModule } from './../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { RecaptchaSettings } from 'ng-recaptcha/recaptcha/recaptcha-settings';
-
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-
 import { ClickOutsideDirective } from './directives/click-outside.directive';
-
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
-
 import { CoreRoutingModule } from './core-routing.module';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { LandingComponent } from './pages/landing/landing.component';

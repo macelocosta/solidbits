@@ -13,6 +13,7 @@ export class ModalService {
   private data = {
     type: null
   }
+  private hasAdded: BehaviorSubject<boolean> = new BehaviorSubject(false);
   
   isModalOpen(): Observable<any> {
     return this.isOpen.asObservable();
@@ -31,5 +32,13 @@ export class ModalService {
   close():void {
     this.is_open = false;
     this.isOpen.next(this.is_open);
+  }
+
+  updateHasAdded(hasAdded) {
+    this.hasAdded.next(hasAdded);
+  }
+
+  getHasAdded(): Observable<any> {
+    return this.hasAdded.asObservable();
   }
 }

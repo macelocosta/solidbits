@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import * as c3 from 'c3';
 import { CardData } from '../../models/card-data';
-import { OptionSelectorService } from 'src/app/shared/services/option-selector.service';
-import { CardDataService } from 'src/app/shared/services/card-data.service';
+import { OptionSelectorService } from './../../services/option-selector.service';
+import { CardDataService } from './../../services/card-data.service';
 
 @Component({
   selector: 'app-card-area-projection',

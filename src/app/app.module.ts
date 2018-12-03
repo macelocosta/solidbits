@@ -16,7 +16,7 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     CoreModule,
     NgIdleModule.forRoot(),
-    LoadingBarHttpClientModule
+    LoadingBarHttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

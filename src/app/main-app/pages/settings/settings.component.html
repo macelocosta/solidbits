@@ -25,21 +25,30 @@
 </form>
 <div class="row">
   <span class="col-lg-12 label">Arranjo físico</span>
-  <div class="col-lg-2" *ngFor="let node of lastValues.children">
+  <div class="col-lg-2" *ngFor="let node of lastStoredBusiness.children">
+    <app-node-card type="''"></app-node-card>
+  </div>
+  <div class="col-lg-2">
+    <app-node-card [type]="'add'" [cat]="'bin'" (click)="onNewNode()"></app-node-card>
+  </div>
+  <div class="col-lg-2">
+    <app-node-card [type]="'add'" [cat]="'space'"></app-node-card>
+  </div>
+</div>
+<div class="row">
+  <span class="col-lg-12 label">Andares e mapas</span>
+  <div class="col-lg-2" *ngFor="let floor of lastStoredBusiness.floors">
     <app-node-card></app-node-card>
   </div>
   <div class="col-lg-2">
-    <app-node-card [type]="'add-bin'" (click)="onNewNode()"></app-node-card>
-  </div>
-  <div class="col-lg-2">
-    <app-node-card [type]="'add-space'"></app-node-card>
+    <app-node-card [type]="'add'" [cat]="'floor'" (click)="onAddNewFloor()"></app-node-card>
   </div>
 </div>
 <div class="row">
   <div class="col-lg-12 end-lg btn-group">
     <button class="is-info is-md" [class.is-loading]="isLoading" (click)="onSave()">
-      <span>Salvar</span>
-      <span class="is-loading-text">Salvando...</span>
+      <span>Salvar alterações</span>
+      <span class="is-loading-text">Salvando alterações...</span>
     </button>
   </div>
 </div>

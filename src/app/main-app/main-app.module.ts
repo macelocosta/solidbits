@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
+import { CardDataService } from './services/card-data.service';
+import { BusinessService } from './services/business.service';
+import { OptionSelectorService } from './services/option-selector.service';
 
 import { SimpleNotificationsModule, NotificationAnimationType } from 'angular2-notifications';
 
@@ -37,7 +43,15 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
       animate: NotificationAnimationType.FromBottom
     }),
     SharedModule,
-    MainAppRoutingModule
+    HttpClientModule,
+    MainAppRoutingModule,
+    NgProgressModule.forRoot({
+      trickleSpeed: 200,
+      min: 20,
+      meteor: false,
+      color: "#396AEF"
+    }),
+    NgProgressRouterModule.forRoot()
   ],
   declarations: [
     OverviewComponent,
@@ -54,9 +68,12 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
     SettingsComponent,
     NodeCardComponent,
     ModalComponent,
-    MapViewerComponent
+    MapViewerComponent,
   ],
   providers: [
+    CardDataService,
+    OptionSelectorService,
+    BusinessService,
     ModalService
   ]
 })
