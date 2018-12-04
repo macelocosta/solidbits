@@ -9,14 +9,14 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  public upload(files: Set<File>): {[key:string]:Observable<number>} {
+  public upload(files: Set<File>, name: string): {[key:string]:Observable<number>} {
     const status = {};
 
     files.forEach(file => {
       const formData: FormData = new FormData();
       formData.append('file', file, file.name);
-
-      const req = new HttpRequest('POST', '/api/upload-floor', formData, {
+      formData.append('name', name);
+      const req = new HttpRequest('POST', 'https://localhost/api/upload-floor', formData, {
         reportProgress: true
       });
 

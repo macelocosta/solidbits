@@ -25,26 +25,26 @@ export class CardDataService {
   getMonitoringData() {
     let time = this.optionSelectorSvc.getTime();
     let interval = this.optionSelectorSvc.getInterval();
-    return this.http.get<any>('/api/data/overview/monitoring', { params: { time: time, interval: interval }}).map(res => {
+    return this.http.get<any>('https://localhost/api/data/overview/monitoring', { params: { time: time, interval: interval }}).map(res => {
       return res;
     });
   }
 
   getCurrentWeight() {
-    return this.http.get<any>('/api/data/overview/current-weight').map(res => {
+    return this.http.get<any>('https://localhost/api/data/overview/current-weight').map(res => {
       return res;
     });
   }
 
   getCurrentVolume() {
-    return this.http.get<any>('/api/data/overview/current-volume').map(res => {
+    return this.http.get<any>('https://localhost/api/data/overview/current-volume').map(res => {
       res.units = 'l';
       return res;
     });
   }
 
   getBinsByFillLevel() {
-    return this.http.get<any>('/api/data/overview/bins-by-fill-level').map(res => {
+    return this.http.get<any>('https://localhost/api/data/overview/bins-by-fill-level').map(res => {
       res.data['x-axis'] = 0;
       this.binsByFillLevel.json.push(res.data);
       return this.binsByFillLevel;
@@ -66,5 +66,11 @@ export class CardDataService {
     return `
       <span>Não há dados para serem exibidos.</span>
     `
+  }
+
+  getFloors() {
+    return this.http.get<any>('https://localhost/api/data/floor-urls').map(res => {
+      return res;
+    });
   }
 }

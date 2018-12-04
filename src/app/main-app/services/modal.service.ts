@@ -14,9 +14,23 @@ export class ModalService {
     type: null
   }
   private hasAdded: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private addAreaReturnData: any;
+  private addBinReturnData: any;
+  private areaReturnData: BehaviorSubject<object> = new BehaviorSubject(null);
+  private binReturnData: BehaviorSubject<object> = new BehaviorSubject(null);
   
   isModalOpen(): Observable<any> {
     return this.isOpen.asObservable();
+  }
+
+  setAddAreaReturnData(data) {
+    this.addAreaReturnData = data;
+    this.areaReturnData.next(this.addAreaReturnData);
+  }
+
+  setAddBinReturnData(name, coordinates) {
+    this.addBinReturnData = { name: name, coordinates: coordinates } ;
+    this.binReturnData.next(this.addBinReturnData);
   }
 
   getData(): any {
@@ -40,5 +54,13 @@ export class ModalService {
 
   getHasAdded(): Observable<any> {
     return this.hasAdded.asObservable();
+  }
+
+  getAreaReturnData(): Observable<any> {
+    return this.areaReturnData.asObservable();
+  }
+
+  getBinReturnData(): Observable<any> {
+    return this.binReturnData.asObservable();
   }
 }

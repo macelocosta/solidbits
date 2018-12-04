@@ -9,8 +9,9 @@ import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { CardDataService } from './services/card-data.service';
 import { BusinessService } from './services/business.service';
 import { OptionSelectorService } from './services/option-selector.service';
-
+import { JwtInterceptor } from './../core/interceptors/jwt.interceptor';
 import { SimpleNotificationsModule, NotificationAnimationType } from 'angular2-notifications';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ModalService } from './services/modal.service';
 
@@ -74,7 +75,11 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
     CardDataService,
     OptionSelectorService,
     BusinessService,
-    ModalService
+    ModalService,
+    { provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
   ]
 })
 export class MainAppModule { }

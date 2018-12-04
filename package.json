@@ -32,9 +32,11 @@
     "jwt-decode": "^2.2.0",
     "ng-recaptcha": "^4.2.1",
     "ng2-tooltip-directive": "^2.1.5",
+    "panzoom": "^7.0.3",
     "progressbar.js": "^1.0.1",
     "rxjs": "~6.2.0",
     "rxjs-compat": "^6.3.3",
+    "tree-model": "^1.0.7",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

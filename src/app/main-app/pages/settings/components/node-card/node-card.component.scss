@@ -1,5 +1,11 @@
 @import '_variables';
 
+:host {
+  &.curr:hover:not(.bin) *, &.add-new:hover *, &.back:hover {
+    cursor: pointer;
+  }
+}
+
 .node-card {
   width: 100%;
   height: 128px;
@@ -18,10 +24,6 @@
   &:hover {
     border-color: $color-primary;
     color: $color-primary;
-     
-    * {
-      cursor: pointer;
-    }
 
     .hover-contents {
       opacity: 1;
@@ -30,6 +32,10 @@
 
   &.add-new {
     border-style: dashed;
+  }
+
+  &.bin > .hover-contents {
+    right: 40px;
   }
 
   .hover-contents {
@@ -57,21 +63,42 @@
     }
   }
 
-  .add-new {
+  .add-new, .curr, .back {
     display: inherit;
     justify-content: inherit;
     align-content: inherit;
     text-align: center;
     flex-direction: column;
-    
+    width: 100%;
+    height: 100%;
+  }
+
+  .add-new, .back {
     i {
       display: block;
       font-size: $icon-font-default-size;
-      margin-top: 2.5rem;
+      margin-top: 2.2rem;
+      margin-bottom: $spacing-xs;
     }
   
     p {
       text-transform: uppercase;
     }
   }
+}
+
+.children-count {
+  font-size: $placeholder-font-size;
+  padding-bottom: $spacing-xs;
+}
+
+.back:hover {
+  color: $color-white;
+  background: $color-primary;
+}
+
+.node-card.bin {
+  border-radius: 50%;
+  width: 134px;
+  margin-left: 14px;
 }

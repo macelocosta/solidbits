@@ -1,4 +1,4 @@
-<div class="node-card" draggable="true" [class.add-new]="type == 'add'">
+<div class="node-card" draggable="true" [class.add-new]="type == 'add'" [class.bin]="cat == 'bin'" [class.back]="type == 'back'">
   <div class="hover-contents" *ngIf="type == 'curr'">
     <i title="Excluir" class="delete icon-trash2"></i>
     <i title="Editar" class="edit icon-pencil"></i>
@@ -8,5 +8,14 @@
     <p *ngIf="cat == 'bin'">Adicionar lixeira</p>
     <p *ngIf="cat == 'space'">Adicionar área ou edifício</p>
     <p *ngIf="cat == 'floor'">Adicionar andar</p>
+  </div>
+  <div class="curr" *ngIf="type == 'curr'">
+    <p>{{ data.name }}</p>
+    <!-- <span class="children-count" *ngIf="data.type == 'space'">{{ data.children ? data.ChildrenCount : 0 }} salas</span>
+    <span class="children-count" *ngIf="data.type == 'space'">{{ data.bins ? data.bins : 0 }} lixeiras</span> -->
+  </div>
+  <div class="back" *ngIf="type == 'back'">
+    <i class="icon-arrow-left-circle"></i>
+    <p>{{ data.name }}</p>
   </div>
 </div>

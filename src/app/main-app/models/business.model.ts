@@ -6,11 +6,13 @@ export class Business {
   floors?: [{
     name: string;
   }];
+  children?: []
 
-  constructor(id, name, abbrev, location, floors) {
+  constructor(id, name, abbrev, location, floors, children) {
     this.name = name;
     this.abbrev = abbrev;
     this.location = location;
     this.floors = floors;
+    this.children = children;
   }
 }

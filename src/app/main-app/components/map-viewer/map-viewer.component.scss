@@ -1,0 +1,78 @@
+@import "_variables";
+@import "card-common";
+
+.contents {
+  padding: 0;
+  width: calc(100% + #{$spacing-md});
+}
+
+svg {
+  width: 1400px;
+  height: 1200px;
+}
+
+.graph-container {
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .zoomable {
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+.layer {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  
+  img {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+.seletor {
+  position: absolute;
+  top: $spacing-md;
+  left: $spacing-md;
+  z-index: 100;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+
+    li {
+      padding: $spacing-sm $spacing-md;
+      border-right: 1px solid $color-gray-medium;
+      border-top-left-radius: $border-radius-default;
+      border-bottom-left-radius: $border-radius-default;
+      border: 1px solid $color-gray-medium;
+      background: $color-white;
+
+      &:not(:first-child) {
+        // border-right: none;
+        border-left: 1px solid $color-gray-medium;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: $border-radius-default;
+        border-bottom-right-radius: $border-radius-default;
+      }
+
+      &:hover {
+        color: $color-primary;
+        cursor: pointer;
+      }
+
+      &.current {
+        background-color: $color-primary;
+        color: $color-white;
+        border: none;
+      }
+    }
+  }
+}

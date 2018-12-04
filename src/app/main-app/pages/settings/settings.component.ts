@@ -1,16 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { trigger, style, animate, transition } from '@angular/animations';
 import { Business } from './../../models/business.model';
 import { Node } from './../../models/node.model'
 import { BusinessService } from './../../services/business.service';
 import { NotificationsService } from 'angular2-notifications';
 import { ModalService } from '../../services/modal.service';
+import * as TreeModel from 'tree-model';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  styleUrls: ['./settings.component.scss'],
+  animations:[
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          // style({transform: 'translateY(10%)', opacity: 0}),
+          animate('150ms', style({transform: 'translateY(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          // style({transform: 'translateY(0)', opacity: 1}),
+          animate('150ms', style({transform: 'translateY(10%)', opacity: 0}))
+        ])
+      ]
+    )
+  ]
 })
 export class SettingsComponent implements OnInit {
 
@@ -19,9 +34,15 @@ export class SettingsComponent implements OnInit {
               private modalSvc:ModalService) { }
 
   private businessForm:FormGroup;
-  private lastStoredBusiness = new Business(null, null, null, null, null);
+  private lastStoredBusiness = new Business(null, null, null, null, null, null);
   private formSubmitted:boolean;
   private isLoading:boolean;
+  private floors = [];
+  private tree = new TreeModel();
+  private root: any;
+  private children: any;
+  private currNode:any;
+  private nodeChanges = false;
 
   ngOnInit() {
     this.businessForm = new FormGroup({
@@ -31,15 +52,52 @@ export class SettingsComponent implements OnInit {
     }, { updateOn: 'blur'});
     this.businessSvc.getBusinessData().subscribe(
       data => {
+        this.root = this.tree.parse(data[0].floors);
+        this.floors = data[0].floors;
         this.businessForm.patchValue(data[0]);
       }, error => {
         throw(error);
       }
     );
     this.modalSvc.getHasAdded().subscribe(val => {
-      console.log(val);
       if (val) {
         this.addFloor();
+        this.nodeChanges = true;
+      }
+    });
+    this.modalSvc.getAreaReturnData().subscribe(val => {
+      if (val) {
+        let node = new Node();
+        node.name = val;
+        node.type = 'space';
+        node.children = [];
+        let node_ = this.tree.parse(node);
+        if (this.currNode) {
+          this.currNode.addChild(node_);
+          this.children = this.currNode.children;
+        } else {
+          this.root.addChild(node_);
+          this.children = this.root.children;
+        }
+      }
+      this.nodeChanges = true;
+    });
+    this.modalSvc.getBinReturnData().subscribe(val => {
+      if (val) {
+        let node = new Node();
+        node.name = val.name;
+        node.type = 'bin';
+        node.location = val.coordinates;
+        node.children = [];
+        let node_ = this.tree.parse(node);
+        if (this.currNode) {
+          this.currNode.addChild(node_);
+          this.children = this.currNode.children;
+        } else {
+          this.root.addChild(node_);
+          this.children = this.root.children;
+        }
+        this.nodeChanges = true;
       }
     });
   }
@@ -48,30 +106,47 @@ export class SettingsComponent implements OnInit {
     return this.businessForm.controls;
   }
 
-  onSave() {
-    this.formSubmitted = true;
-    if (this.businessForm.valid) {
-      // if (this.lastStoredBusiness == this.businessForm.value) {
-      //   this.notificationsSvc.info('', 'Não houveram alterações.');
-      // } else {
-      //   this.isLoading = true;
-      //   let business = new Business(null, this.f.name.value, this.f.abbrev.value, this.f.location.value, null);
-      //   this.businessSvc.updateData(business).subscribe(
-      //     data => {
-      //       this.lastStoredBusiness = this.businessForm.value;
-      //       this.notificationsSvc.success('', 'Dados salvos com sucesso.');
-      //       this.isLoading = false;
-      //     }, error => {
-      //       this.notificationsSvc.warn('', 'Não foi possível salvar os dados. Você pode tentar recarregar a página e tentar novamente.');
-      //       this.isLoading = false;
-      //     }
-      //   );
-      // }
+  updateView(node) {
+    if (node.model.type !== 'bin') {
+      this.children = node.children;
+      this.currNode = node;
     }
   }
 
-  onNewNode() {
+  goUp() {
+    this.currNode = this.root.parent;
+    this.children = this.root.children;
+  }
+
+  onSave() {
+    this.formSubmitted = true;
+    if (this.businessForm.valid) {
+      if (this.lastStoredBusiness == this.businessForm.value || !this.nodeChanges) {
+        this.notificationsSvc.info('', 'Não houveram alterações.');
+      } else {
+        this.isLoading = true;
+        let business = new Business(null, this.f.name.value, this.f.abbrev.value, this.f.location.value, null, this.root.model.children);
+        this.businessSvc.updateData(business).subscribe(
+          data => {
+            this.lastStoredBusiness = this.businessForm.value;
+            this.notificationsSvc.success('', 'Dados salvos com sucesso.');
+            this.isLoading = false;
+          }, error => {
+            console.log(error);
+            this.notificationsSvc.warn('', 'Não foi possível salvar os dados. Você pode tentar recarregar a página e tentar novamente.');
+            this.isLoading = false;
+          }
+        );
+      }
+    }
+  }
+
+  onNewBin() {
     this.modalSvc.open('add-bin');
+  }
+
+  onNewArea() {
+    this.modalSvc.open('add-area');
   }
 
   onAddNewFloor() {
@@ -84,7 +159,6 @@ export class SettingsComponent implements OnInit {
     } else {
       // this.lastStoredBusiness.floors++;
     }
-    console.log(this.lastStoredBusiness.floors);
   }
 
 }

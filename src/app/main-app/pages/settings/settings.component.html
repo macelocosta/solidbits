@@ -25,23 +25,26 @@
 </form>
 <div class="row">
   <span class="col-lg-12 label">Arranjo físico</span>
-  <div class="col-lg-2" *ngFor="let node of lastStoredBusiness.children">
-    <app-node-card type="''"></app-node-card>
+  <div class="col-lg-2" *ngIf="currNode">
+    <app-node-card [type]="'back'" [data]="currNode.model" (click)="goUp()"></app-node-card>
+  </div>
+  <div class="col-lg-2" *ngFor="let node of children; let i = index" style="margin-bottom: 0.75rem;" [@enterAnimation]>
+    <app-node-card [type]="'curr'" [cat]="node.model.type" class="{{node.model.type}} curr" [data]="node.model" (click)="updateView(node)"></app-node-card>
   </div>
   <div class="col-lg-2">
-    <app-node-card [type]="'add'" [cat]="'bin'" (click)="onNewNode()"></app-node-card>
+    <app-node-card class="add-new" [type]="'add'" [cat]="'bin'" (click)="onNewBin()"></app-node-card>
   </div>
   <div class="col-lg-2">
-    <app-node-card [type]="'add'" [cat]="'space'"></app-node-card>
+    <app-node-card class="add-new" [type]="'add'" [cat]="'space'" (click)="onNewArea()"></app-node-card>
   </div>
 </div>
 <div class="row">
   <span class="col-lg-12 label">Andares e mapas</span>
-  <div class="col-lg-2" *ngFor="let floor of lastStoredBusiness.floors">
-    <app-node-card></app-node-card>
+  <div class="col-lg-2" *ngFor="let floor of floors">
+    <app-node-card class="curr" [type]="'curr'" [cat]="'floor'" [data]="floor"></app-node-card>
   </div>
   <div class="col-lg-2">
-    <app-node-card [type]="'add'" [cat]="'floor'" (click)="onAddNewFloor()"></app-node-card>
+    <app-node-card class="add-new" [type]="'add'" [cat]="'floor'" (click)="onAddNewFloor()"></app-node-card>
   </div>
 </div>
 <div class="row">

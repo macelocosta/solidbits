@@ -1,35 +1,49 @@
 <div class="modal" *ngIf="data">
-  <h5 *ngIf="data.type == 'add-bin'">Adicionar lixeira</h5>
-  <h5 *ngIf="data.type == 'add-floor'">Adicionar andar</h5>
-  <div *ngIf="data.type == 'add-bin'">
-    <form [formGroup]="newBinForm">
-      <label for="new-bin-name">Nome para identificação</label>
-      <input id="new-bin-name" name="new-bin-name" type="text" formControlName="name" autofocus>
-      <label for="location">Localização</label>
-      <app-map-viewer></app-map-viewer>
-    </form>
-  </div>
-  <div *ngIf="data.type == 'add-floor'">
-    <form [formGroup]="newFloorForm">
-      <label for="name">Nome para identificação</label>
-      <input id="name" type="text" name="name" formControlName="name" autofocus>
-      <label for="file">Para adicionar um andar, você precisa carregar uma imagem com a planta do local.</label>
-      <input type="file" #file (change)="onFilesAdded()" accept=".svg,.jpg,.jpeg,.png" [disabled]="uploading || uploadSuccessful"/>
-    </form>
-    <div class="progress-bar"></div>
-  </div>
   <div class="row">
+    <div class="col-lg-12">
+      <h5 *ngIf="data.type == 'add-bin'">Adicionar lixeira</h5>
+      <h5 *ngIf="data.type == 'add-floor'">Adicionar andar</h5>
+      <h5 *ngIf="data.type == 'add-area'">Adicionar área ou edifício</h5>
+    </div>
+    <div class="col-lg-12">
+      <div *ngIf="data.type == 'add-bin'">
+        <form [formGroup]="newBinForm">
+          <label for="new-bin-name">Nome para identificação</label>
+          <input id="new-bin-name" name="new-bin-name" type="text" formControlName="name" autofocus>
+          <label for="location">Localização</label>
+          <app-map-viewer (coordinates)="receberCoordenadas($event)"></app-map-viewer>
+        </form>
+      </div>
+      <div *ngIf="data.type == 'add-area'">
+        <form [formGroup]="newAreaForm">
+          <label for="name">Nome para identificação</label>
+          <input id="name" type="text" name="name" formControlName="name" autofocus>
+        </form>
+        <div class="progress-bar"></div>
+      </div>
+      <div *ngIf="data.type == 'add-floor'">
+        <form [formGroup]="newFloorForm">
+          <label for="name">Nome para identificação</label>
+          <input id="name" type="text" name="name" formControlName="name" autofocus>
+          <label for="file">Para adicionar um andar, você precisa carregar uma imagem com a planta do local.</label>
+          <input type="file" #file (change)="onFilesAdded()" accept=".svg,.jpg,.jpeg,.png" [disabled]="uploading"/>
+        </form>
+        <div class="progress-bar"></div>
+      </div>
+    </div>
     <div class="col-lg-12 end-lg btn-group">
-      <button type="button" class="is-basic is-md btn-cancel" (click)="onCancel()" [attr.disabled]="showCancelButton">
+      <button type="button" class="is-basic is-md btn-cancel" (click)="onCancel()">
         <span>Cancelar</span>
       </button>
       <button class="is-info is-md" [class.is-loading]="uploading" (click)="onSave()">
         <span>Adicionar
           <span *ngIf="data.type == 'add-bin'">lixeira</span>
           <span *ngIf="data.type == 'add-floor'">andar e enviar imagem</span>
+          <span *ngIf="data.type == 'add-area'">área ou edifício</span>
         </span>
         <span class="is-loading-text" *ngIf="data.type == 'add-bin'">Adicionando...</span>
         <span class="is-loading-text" *ngIf="data.type == 'add-floor'">Adicionando andar e enviando imagem...</span>
+        <span class="is-loading-text" *ngIf="data.type == 'add-area'">Adicionando área ou edifício...</span>
       </button>
     </div>
   </div>
