@@ -33,7 +33,7 @@ export class AuthenticationService {
   tokenIdentifier = 'sb_webapp_tkn';
 
   public login(user: User): Observable<boolean> {
-    return this.http.post<any>('https://localhost/api/auth/login', { email: user.email, password: user.password }).map(data => {
+    return this.http.post<any>('api/auth/login', { email: user.email, password: user.password }).map(data => {
       if (data.token) {
         this.sessionExpired = false;
         sessionStorage.setItem(this.tokenIdentifier, JSON.stringify(data.token));
@@ -44,7 +44,7 @@ export class AuthenticationService {
 
   public logout(returning?: boolean): void {
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.getLocalToken()}`});
-    this.http.post<any>('https://localhost/api/auth/logout', { headers: headers, observe: 'response' }).subscribe(data => {
+    this.http.post<any>('api/auth/logout', { headers: headers, observe: 'response' }).subscribe(data => {
       this.logoutActions(returning);
     }, e => {
       this.logoutActions(returning);
@@ -66,7 +66,7 @@ export class AuthenticationService {
     if (token) {
       if (!this.jwtHelper.isTokenExpired(token)) {
         const headers = new HttpHeaders({'Authorization': `Bearer ${this.getLocalToken()}`});
-        return this.http.get('https://localhost/api/auth/protected', { headers: headers, observe: 'response' }).map(res => {
+        return this.http.get('api/auth/protected', { headers: headers, observe: 'response' }).map(res => {
           if (res.status === 200) {
             // since the function isAuthenticated() is called after every login or reload, the startIdleTimeout() is placed here
             this.idle.watch();
@@ -103,7 +103,7 @@ export class AuthenticationService {
 
   public isResetPasswordTokenValid(): any {
     const token = window.location.href.split('=')[1];
-    return this.http.get(`https://localhost/api/auth/reset-password?token=${token}`, { observe: 'response' }).map(res => {
+    return this.http.get(`api/auth/reset-password?token=${token}`, { observe: 'response' }).map(res => {
       if (res.status === 200) {
         return true;
       } else {
