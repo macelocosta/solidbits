@@ -1,0 +1,16 @@
+<div class="row middle-lg middle-lg between-lg">
+  <div class="col-md-6">
+    <h5 class="page-title start-lg">Coleta</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 coleta">
+    <app-map-viewer></app-map-viewer>
+  </div>
+  <div class="col-lg-2">
+    <app-card-basic-info [title]="'Peso a ser coletado'" [data]="currentWeight" [help_text]="'Exibe o peso total dos resíduos que serão coletados'"></app-card-basic-info>
+  </div>
+  <div class="col-lg-2">
+    <app-card-basic-info [title]="'Volume a ser coletado'" [data]="currentVolume" [help_text]="'Exibe o volume total dos resíduos que serão coletados'"></app-card-basic-info>
+  </div>
+</div>

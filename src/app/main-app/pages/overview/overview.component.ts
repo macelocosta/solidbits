@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardData } from '../../models/card-data';
 import { CardDataService } from './../../services/card-data.service';
 import { OptionSelectorService } from './../../services/option-selector.service';
@@ -8,7 +8,7 @@ import { OptionSelectorService } from './../../services/option-selector.service'
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, OnDestroy {
 
   constructor(private cardDataSvc:CardDataService,
               private optionSelectorSvc:OptionSelectorService) { }
@@ -26,6 +26,7 @@ export class OverviewComponent implements OnInit {
       () => {
         this.getMonitoringData();
         // this.getBinsByFillLevel();
+        // this.cardDataSvc.emitMonitoringData();
       }
     );
 
@@ -74,6 +75,13 @@ export class OverviewComponent implements OnInit {
         throw error;
       }
     )
+
+    this.cardDataSvc.monitoringData().subscribe(
+      data => {
+        this.monitoringData = data;
+        this.monitoringData.errorLoading = false;
+      }
+    )
   }
 
   getMonitoringData() {
@@ -87,7 +95,11 @@ export class OverviewComponent implements OnInit {
       }
     )
   }
+
+  ngOnDestroy() {
+  }
 }
+
 
 // setTimeout(() => {
   //   this.biggestWasteProducers = {

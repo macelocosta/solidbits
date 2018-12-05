@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as d3 from 'd3';
+import { CardDataService } from '../../services/card-data.service';
 
 @Component({
   selector: 'app-network',
@@ -9,7 +10,7 @@ import * as d3 from 'd3';
 })
 export class NetworkComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cardDataSvc:CardDataService) { }
 
   private treeData = {
     name: "UFC Quixadá",
@@ -31,122 +32,28 @@ export class NetworkComponent implements OnInit {
           },
         ]
       },
-      {
-        name: "Bloco 2",
-        type: "location",
-        status: 0,
-        id:"87c78s",
-        children: [
-          {
-            name: "Sala 1",
-            type: "location",
-            status: 0,
-            id:"87c78c",
-            children: [
-              {
-                name: "Lixeira 1",
-                type: "bin",
-                status: 0,
-                id:"87gtaf"
-              }
-            ]
-          },
-          {
-            name: "Sala 2",
-            type: "location",
-            status: 0,
-            id:"89c78c",
-            children: [
-              {
-                name: "Lixeira 1",
-                type: "bin",
-                status: 0,
-                id:"87gtaw"
-              },
-              {
-                name: "Lixeira 2",
-                type: "bin",
-                status: 0,
-                id:"87gpaw"
-              }
-            ]
-          },
-        ]
-      },
-      {
-        name: "Bloco 3",
-        type: "location",
-        status: 0,
-        id:"87c78s",
-        children: [
-          {
-            name: "Sala 1",
-            type: "location",
-            status: 0,
-            id:"87c78c",
-            children: [
-              {
-                name: "Lixeira 1",
-                type: "bin",
-                status: 0,
-                id:"87gtaf"
-              }
-            ]
-          },
-          {
-            name: "Sala 2",
-            type: "location",
-            status: 0,
-            id:"89c78c",
-            children: [
-              {
-                name: "Lixeira 1",
-                type: "bin",
-                status: 0,
-                id:"87gtaw"
-              },
-              {
-                name: "Lixeira 2",
-                type: "bin",
-                status: 0,
-                id:"87gpaw"
-              },
-              {
-                name: "Lixeira 3",
-                type: "bin",
-                status: 1,
-                id:"87gpaw"
-              },
-              {
-                name: "Sub-sala 1",
-                type: "location",
-                status: 0,
-                id:"89c78c",
-                children: [
-                  {
-                    name: "Sub-sala 2",
-                    type: "location",
-                    status: 0,
-                    id:"89c78c",
-                    children: [
-                      {
-                        name: "Lixeira 1",
-                        type: "bin",
-                        status: 0,
-                        id:"87gpaw"
-                      },
-                    ]
-                  },
-                ]
-              }
-            ]
-          },
-        ]
-      }
     ]
-  };
+  }
+  svg;
+  lastStatus;
 
   ngOnInit() {
+    this.cardDataSvc.network().subscribe(data => {
+      this.treeData = data.children;
+      this.lastStatus = data.status;
+      this.draw();
+    });
+  }
+
+  openNode(node_id) {
+    this.router.navigate([`app/node/${node_id}`]);
+  }
+
+  draw() {
+    let svg_ = document.querySelector("svg");
+    if (svg_) {
+      svg_.remove();
+    }
     let margin = {top: 12, right: 12, bottom: 12, left: 12},
     // container_width = document.getElementById('main_container').offsetWidth - 24,
     // container_height = window.innerHeight - 136;
@@ -157,7 +64,7 @@ export class NetworkComponent implements OnInit {
     const WIDTH = container_width - 200;
     const HEIGHT = container_height - 100;
     
-    const svg = d3.select(".bin-view-container").append("svg")
+    this.svg = d3.select(".bin-view-container").append("svg")
         .attr("width", container_width)
         .attr("height", container_height)
         .append('g');
@@ -168,7 +75,7 @@ export class NetworkComponent implements OnInit {
     
     tree(root);
     
-    var link = svg.selectAll(".link")
+    var link = this.svg.selectAll(".link")
         .data(root.descendants().slice(1))
         .enter().append("path")
         .attr("class", "link")
@@ -179,16 +86,16 @@ export class NetworkComponent implements OnInit {
             + " " + d.parent.y + "," + d.parent.x;
         })
         .attr("stroke", function(d) {
-          if (d.data.status == 0) {
+          if (this.lastStatus == 0) {
             return "#8CC34B";
-          } else if (d.data.status == 1) {
+          } else if (this.lastStatus == 1) {
             return "#FE3517";
           } else {
             return "#8CC34B";
           }
         })
     
-    var node = svg.selectAll(".node")
+    var node = this.svg.selectAll(".node")
         .data(root.descendants())
         .enter().append("g")
         .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf") + " " + (d.data.type == "bin" ? "bin":"location")})
@@ -225,9 +132,9 @@ export class NetworkComponent implements OnInit {
             return "translate(-3, 0)";
           }
         }).attr("fill", function(d) {
-          if (d.data.status == 0) {
+          if (this.lastStatus == 0) {
             return "#8CC34B";
-          } else if (d.data.status == 1) {
+          } else if (this.lastStatus == 1) {
             return "#FE3517";
           } else {
             return "#8CC34B";
@@ -260,16 +167,12 @@ export class NetworkComponent implements OnInit {
     let nodes = document.querySelectorAll('.node');
 
     for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].classList.contains('bin')) {
+      // if (nodes[i].classList.contains('bin')) {
         nodes[i].addEventListener('click', ()=> {
-          this.openNode(nodes[i].getAttribute('node_id'));
+          this.openNode('507f191e810c19729de860ea');
         });
-      }
+      // }
     }
-  }
-
-  openNode(node_id) {
-    this.router.navigate([`lixeiras/node/${node_id}`]);
   }
 
 //   <path 

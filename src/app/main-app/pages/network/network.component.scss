@@ -16,7 +16,7 @@
   fill: none;
 }
 
-/deep/ g.node.bin {
+/deep/ g.node.bin, /deep/ g.node.space {
   &:hover {
     cursor: pointer;
   }

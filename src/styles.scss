@@ -218,3 +218,12 @@ h6 {
 .no-data {
   color: $color-no-data;
 }
+
+.coleta .contents {
+  height: calc(100vh - 130px);
+  width: 100% !important;
+}
+
+.coleta .graph-container {
+  height: 100% !important;
+}

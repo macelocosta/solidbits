@@ -43,9 +43,29 @@ export class CardDataService {
     });
   }
 
+  currentUsage(): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on('overview-current-usage', (data) => observer.next(data));
+    });
+  }
+
   mapData(): Observable<any> {
     return new Observable<any>(observer => {
       this.socket.on('map-data', (data) => observer.next(data));
+    });
+  }
+
+  emitMonitoringData() {
+    let time = this.optionSelectorSvc.getTime();
+    let interval = this.optionSelectorSvc.getInterval();
+    this.socket.emit('overview-monitoring', { time: time, interval: interval});
+  }
+
+  monitoringData():Observable<any> {    
+    return new Observable<any>(observer => {
+      this.socket.on('overview-monitoring', (data) => {
+        observer.next(data);
+      });
     });
   }
 
@@ -56,6 +76,14 @@ export class CardDataService {
         this.binsByFillLevel_meta.json = [];
         this.binsByFillLevel_meta.json.push(data.response);
         observer.next(this.binsByFillLevel_meta);
+      });
+    });
+  }
+
+  network():  Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on('network', (data) => {
+        observer.next(data);
       });
     });
   }

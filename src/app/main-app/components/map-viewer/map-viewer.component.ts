@@ -18,6 +18,8 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
   data;
   draw;
   group;
+  circle;
+  private bin_;
 
   ngOnInit() {
     this.cardDataSvc.getFloors().subscribe(
@@ -28,6 +30,14 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
         throw error;
       }
     );
+
+    this.cardDataSvc.mapData().subscribe(
+      data => {
+        this.bin_ = data;
+      }, error => {
+        throw error;
+      }
+    )
   }
 
   ngAfterViewInit() {
@@ -35,15 +45,6 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
     this.group = this.draw.group();
     let zoomable = document.querySelector('.zoomable');
     panzoom(zoomable);
-    let circle;
-    this.draw.click((evt) => {
-      if (circle) {
-        circle.remove();
-      }
-      circle = this.draw.circle(evt.offsetX, evt.offsetY, 7);
-      circle.attr('fill', '#396AEF');
-      this.coordinates.emit({x: evt.offsetX, y: evt.offsetY});
-    });
   }
 
   switchFloor(i) {
@@ -57,6 +58,18 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
     }
     if (seletores[i]) {
       seletores[i].classList.add('current');
+    }
+    if (i == 1) {
+      this.circle = this.draw.circle(this.bin_.coordinates.x, this.bin_.coordinates.y, 7);
+      if (this.bin_.status == 0) {
+        this.circle.attr('fill', '#fe3517');
+      } else {
+        this.circle.attr('fill', '#8cc34b');
+      }
+    } else {
+      if (this.circle) {
+        this.circle.remove();
+      }
     }
     this.floor.emit(i);
   }

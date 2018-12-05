@@ -32,6 +32,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { NodeCardComponent } from './pages/settings/components/node-card/node-card.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
+import { NodeComponent } from './pages/node/node.component';
+import { CollectComponent } from './pages/collect/collect.component';
 
 @NgModule({
   imports: [
@@ -71,6 +73,8 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
     NodeCardComponent,
     ModalComponent,
     MapViewerComponent,
+    NodeComponent,
+    CollectComponent,
   ],
   providers: [
     CardDataService,
