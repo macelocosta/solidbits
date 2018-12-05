@@ -36,6 +36,7 @@
     "progressbar.js": "^1.0.1",
     "rxjs": "~6.2.0",
     "rxjs-compat": "^6.3.3",
+    "socket.io": "^2.2.0",
     "tree-model": "^1.0.7",
     "zone.js": "~0.8.26"
   },

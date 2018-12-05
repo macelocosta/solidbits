@@ -52,3 +52,15 @@
     }
   }
 }
+
+.btn {
+  margin: $spacing-md 0 $spacing-md;
+}
+
+.code {
+  margin-left: $spacing-xs;
+  font-family: Consolas, monospace;
+  padding: $spacing-sm;
+  background-color: #e0e0e0;
+  border-radius: $spacing-xs;
+}

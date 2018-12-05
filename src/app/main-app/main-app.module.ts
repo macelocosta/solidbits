@@ -14,6 +14,7 @@ import { SimpleNotificationsModule, NotificationAnimationType } from 'angular2-n
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ModalService } from './services/modal.service';
+import { NodeService } from './services/node.service';
 
 import { MainAppRoutingModule } from './main-app-routing.module';
 import { MainAppComponent } from './main-app.component';
@@ -52,7 +53,7 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
       meteor: false,
       color: "#396AEF"
     }),
-    NgProgressRouterModule.forRoot()
+    NgProgressRouterModule.forRoot(),
   ],
   declarations: [
     OverviewComponent,
@@ -80,6 +81,7 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
       useClass: JwtInterceptor,
       multi: true
     },
+    NodeService
   ]
 })
 export class MainAppModule { }

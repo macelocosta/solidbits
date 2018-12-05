@@ -4,8 +4,8 @@
       <li [routerLink]="['overview']" [routerLinkActive]="['active', 'remove-border-top']" [routerLinkActiveOptions]="{ exact: true }"><span>Visão geral</span></li>
       <li [routerLink]="['coleta']" [routerLinkActive]="['active']"><span>Coleta</span></li>
       <li [routerLink]="['network']" [routerLinkActive]="['active']"><span>Rede</span></li>
-      <li [routerLink]="['analises']" [routerLinkActive]="['active']"><span>Análises</span></li>
-      <li [routerLink]="['relatorios']" [routerLinkActive]="['active']"><span>Relatórios</span></li>
+      <li [routerLinkActive]="['active']" class="disabled"><span>Análises</span></li>
+      <li [routerLinkActive]="['active']" class="disabled"><span>Relatórios</span></li>
       <li [routerLink]="['settings']" [routerLinkActive]="['active']"><span>Configurações</span></li>
     </ul>
   </nav>

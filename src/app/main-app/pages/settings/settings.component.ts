@@ -52,7 +52,10 @@ export class SettingsComponent implements OnInit {
     }, { updateOn: 'blur'});
     this.businessSvc.getBusinessData().subscribe(
       data => {
-        this.root = this.tree.parse(data[0].floors);
+        // console.log(data[0].children)
+        this.root = this.tree.parse(data[0]);
+        console.log(this.root);
+        this.children = this.root.children;
         this.floors = data[0].floors;
         this.businessForm.patchValue(data[0]);
       }, error => {
@@ -64,6 +67,7 @@ export class SettingsComponent implements OnInit {
         this.addFloor();
         this.nodeChanges = true;
       }
+      this.nodeChanges = true;
     });
     this.modalSvc.getAreaReturnData().subscribe(val => {
       if (val) {
@@ -87,7 +91,8 @@ export class SettingsComponent implements OnInit {
         let node = new Node();
         node.name = val.name;
         node.type = 'bin';
-        node.location = val.coordinates;
+        node.coordinates = val.coordinates;
+        node._id = val._id;
         node.children = [];
         let node_ = this.tree.parse(node);
         if (this.currNode) {

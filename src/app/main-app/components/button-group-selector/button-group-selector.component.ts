@@ -34,10 +34,10 @@ export class ButtonGroupSelectorComponent implements OnInit, AfterViewInit, OnCh
       ];
     } else if (this.type == 'time') {
       this.values = [
-        { desc: 'Última hora', int: '1h' }, 
-        { desc: 'dia', int: '1d' }, 
-        { desc: 'semana', int: '1w' }, 
-        { desc: 'mês', int: '4w' }
+        { desc: 'Última hora', int: '1h', currentPeriod: 'da última hora' }, 
+        { desc: 'dia', int: '1d', currentPeriod: 'do último dia' }, 
+        { desc: 'semana', int: '1w', currentPeriod: 'da última semana' }, 
+        { desc: 'mês', int: '4w', currentPeriod: 'do último mês' }
       ];
     }
   }
@@ -52,6 +52,8 @@ export class ButtonGroupSelectorComponent implements OnInit, AfterViewInit, OnCh
           this.optionSelectorSvc.setTime(this.values[i].int);
         } else if (this.type == 'volume') {
           this.optionSelectorSvc.setVolumeMeasureUnit(this.values[i].int);
+          this.optionSelectorSvc.currentPeriod = this.values[i].currentPeriod;
+          console.log(this.optionSelectorSvc.currentPeriod);
         }
       }
     }

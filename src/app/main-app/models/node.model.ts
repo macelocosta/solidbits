@@ -5,6 +5,6 @@ export class Node {
   status:number;
   parent?:string;
   path?:string;
-  location?:string;
+  coordinates?:string;
   children?:any;
 }

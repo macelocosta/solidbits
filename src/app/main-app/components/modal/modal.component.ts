@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 import { NotificationsService } from 'angular2-notifications';
 import * as ProgressBar from 'progressbar.js';
 import { BusinessService } from '../../services/business.service';
+import { NodeService } from '../../services/node.service';
 
 @Component({
   selector: 'app-modal',
@@ -17,7 +18,8 @@ export class ModalComponent implements AfterViewInit {
   constructor(private modalSvc:ModalService,
               private fileUploadSvc: FileUploadService,
               private notificationsSvc: NotificationsService,
-              private businessSvc:BusinessService) {}
+              private businessSvc:BusinessService,
+              private nodeSvc:NodeService) {}
 
   isVisible:boolean;
   modal:HTMLElement;
@@ -34,6 +36,10 @@ export class ModalComponent implements AfterViewInit {
   uploadSuccessful = false;
   line;
   newBinCoordinates;
+  preBinData;
+  gettingCode = false;
+  gotCode = false;
+  floor;
 
   ngAfterViewInit() {
     this.modal = document.querySelector('app-modal');
@@ -108,10 +114,28 @@ export class ModalComponent implements AfterViewInit {
       this.newAreaForm.reset();
       this.modalSvc.close();
     } else if (this.data.type == 'add-bin') {
-      this.modalSvc.setAddBinReturnData(this.newBinForm.controls.name.value, this.newBinCoordinates);
+      this.modalSvc.setAddBinReturnData(this.newBinForm.controls.name.value, this.newBinCoordinates, this.preBinData._id);
       this.newBinForm.reset();
       this.modalSvc.close();
     }
+  }
+
+  onGetCode() {
+    this.gettingCode = true;
+    this.nodeSvc.preAddBin({name: this.newBinForm.controls.name.value, coordinates: this.newBinCoordinates, floor: this.floor}).subscribe(
+      data => {
+        this.gettingCode = false;
+        this.preBinData = data;
+        this.gotCode = true;
+      }, error => {
+        this.gettingCode = false;
+        throw error;
+      }
+    );
+  }
+
+  getFloor(evt) {
+    this.floor = evt;
   }
   
   receberCoordenadas(evt) {

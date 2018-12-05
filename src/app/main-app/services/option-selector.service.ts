@@ -14,6 +14,7 @@ export class OptionSelectorService {
   private interval = '1m';
   private volume_measure_unit = 'l';
   private volume_measure_multiplier = 1;
+  public currentPeriod;
 
   getTime():any {
     return this.time;

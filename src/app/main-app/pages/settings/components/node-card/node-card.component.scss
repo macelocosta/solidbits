@@ -1,7 +1,7 @@
 @import '_variables';
 
 :host {
-  &.curr:hover:not(.bin) *, &.add-new:hover *, &.back:hover {
+  &.curr:hover:not(.bin) *, &.add-new:hover *, &.back:hover * {
     cursor: pointer;
   }
 }

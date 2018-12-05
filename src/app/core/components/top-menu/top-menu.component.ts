@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { CardDataService } from 'src/app/main-app/services/card-data.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -10,7 +11,8 @@ import { Router, NavigationEnd } from '@angular/router';
 export class TopMenuComponent implements OnInit {
 
   constructor(private authSvc:AuthenticationService,
-              private router:Router) {
+              private router:Router,
+              private cardDataSvc:CardDataService) {
                 router.events.subscribe((event) => {
                   if (event instanceof NavigationEnd) {
                     this.updateCurrentRoute(event.url);
@@ -26,10 +28,14 @@ export class TopMenuComponent implements OnInit {
   private isAlarmVisible:boolean;
 
   ngOnInit() {
+    this.authSvc.isAuthenticated().subscribe(isAuth => {
+      this.isAuthenticated = isAuth;
+      // this.cardDataSvc.initSocket();
+    });
   }
   
   updateCurrentRoute(route:string) {
-    this.authSvc.isAuthenticated().map(isAuth => {
+    this.authSvc.isAuthenticated().subscribe(isAuth => {
       this.isAuthenticated = isAuth;
     });
     let currRoute = route.substring(1);

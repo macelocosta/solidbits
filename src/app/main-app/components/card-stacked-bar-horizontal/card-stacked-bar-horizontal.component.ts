@@ -76,13 +76,14 @@ export class CardStackedBarHorizontalComponent implements OnInit, AfterViewInit,
   ngOnChanges() {
     if (this.data) {
       // this.data[0]['x-axis'] = 0;
-      console.log(this.data);
+      // this.chart.unload();
       this.chart.load({
         json: this.data.json,
         keys: this.data.keys,
         names: this.data.names,
-        groups: this.data.groups
+        groups: this.data.groups,
       });
+      console.log(this.data.json);
     };
   }
 }

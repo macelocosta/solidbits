@@ -4,8 +4,11 @@
   </div>
   <span class="title">{{ title }}</span>
   <div class="data" id="basic-info-data" [class.is-loading]="!data && !data.value">
-    <span class="value">{{ data.value }}</span>
-    <span class="units">{{ data.units }}</span>
+    <span *ngIf="data.value !== 'no-data'">
+      <span class="value">{{ data.value }}</span>
+      <span class="units">{{ data.units }}</span>
+    </span>
+    <span class="no-data" *ngIf="data.value == 'no-data'">Não há dados {{ optionSelectorSvc.currentPeriod }} para serem exibidos.</span>
   </div>
   <div class="growth-indicator" [class.is-loading]="!data && !data.info">
     <div class="icon">

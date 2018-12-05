@@ -43,6 +43,7 @@ export class CardBasicInfoComponent implements OnInit, OnChanges {
     if (this.data && this.data.units == 'm3') {
       this.data.value = this.optionSelectorSvc.convertLitreToCubicMeter(this.data.value);
     }
+    console.log(this.data)
   }
 
 }

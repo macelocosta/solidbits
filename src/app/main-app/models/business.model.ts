@@ -6,7 +6,7 @@ export class Business {
   floors?: [{
     name: string;
   }];
-  children?: []
+  children?: any[];
 
   constructor(id, name, abbrev, location, floors, children) {
     this.name = name;

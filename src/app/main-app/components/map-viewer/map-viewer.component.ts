@@ -14,6 +14,7 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
   constructor(private cardDataSvc:CardDataService) { }
 
   @Output() coordinates = new EventEmitter();
+  @Output() floor = new EventEmitter();
   data;
   draw;
   group;
@@ -26,7 +27,7 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
       }, error => {
         throw error;
       }
-      );
+    );
   }
 
   ngAfterViewInit() {
@@ -57,5 +58,6 @@ export class MapViewerComponent implements OnInit, AfterViewInit {
     if (seletores[i]) {
       seletores[i].classList.add('current');
     }
+    this.floor.emit(i);
   }
 }

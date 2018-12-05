@@ -28,8 +28,8 @@ export class ModalService {
     this.areaReturnData.next(this.addAreaReturnData);
   }
 
-  setAddBinReturnData(name, coordinates) {
-    this.addBinReturnData = { name: name, coordinates: coordinates } ;
+  setAddBinReturnData(name, coordinates, id) {
+    this.addBinReturnData = { name: name, coordinates: coordinates, _id: id } ;
     this.binReturnData.next(this.addBinReturnData);
   }
 
